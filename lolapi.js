@@ -67,7 +67,7 @@ var http = require('http');
 
 	League.init = function(key, region) {
 		_authKey = key;
-		if(region) _region =  + '/' + region;
+		if(region) _region = '/' + region;
 	}
 
 	League.Champions = function(callback) {
