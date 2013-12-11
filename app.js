@@ -2,32 +2,36 @@ leagueApi = require('./lolapi');
 
 leagueApi.init('');
 
-// leagueApi.Champions(function(err, champs) {
-// 	console.log(champs);
-// });
+//These should all be undefined if you provide a valid key.
 
-// leagueApi.League(19321078, function(err, data) {
-// 	console.log(data);
-// });
-
-// leagueApi.Game(19321078, function(err, data) {
-// 	console.log(data);
-// });
-
-// leagueApi.Stats.Ranked(19321078, function(err,data) {
-// 	console.log(data);
-// });
-
-// leagueApi.Stats.Summary(19321078, function(err,data) {
-// 	console.log(data);
-// });
-
-/*leagueApi.Summoner.Masteries(19321078, function(err,data) {
-	console.log(data);
-});*/
-
-leagueApi.Summoner.ByName("Yolo Swag 5ever", function(err,data) {
-	console.log(data);
+leagueApi.Champions(function(err, champs) {
+	console.log(err);
 });
 
+leagueApi.League(19321078, function(err, data) {
+	console.log(err);
+});
 
+leagueApi.Game(19321078, function(err, data) {
+	console.log(err);
+});
+
+leagueApi.Stats.Ranked(19321078, function(err,data) {
+	console.log(err);
+});
+
+leagueApi.Stats.Summary(19321078, function(err,data) {
+	console.log(err);
+});
+
+leagueApi.Summoner.Masteries(19321078, function(err,data) {
+	console.log(err);
+});
+
+leagueApi.Summoner.ListNames('19321078,62746', function(err,data) {
+	console.log(err);
+});
+
+leagueApi.Team(19321078, function(err, data) {
+	console.log(err);
+});
