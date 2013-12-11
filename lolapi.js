@@ -22,7 +22,8 @@ var http = require('http');
 
 	function _getRequest(path, callback) {
 		var response;
-
+		if(!_authKey) callback(new Error('You have not given an auth key for the API'));
+		
 		http.get(path, function(response) {
 			response.on('data', function(chunk) {
 				response += chunk;
