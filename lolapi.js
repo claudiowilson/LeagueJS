@@ -5,8 +5,8 @@ var http = require('http');
 
 	if (typeof exports !== 'undefined') {
 		if (typeof module !== 'undefined' && module.exports) {
-              exports = module.exports = League;
-        }
+              		exports = module.exports = League;
+        	}
 		exports.lolapi = League;
 	}
 
