@@ -1,5 +1,4 @@
 var http = require('http');
-var querystring = require('querystring');
 
 (function() {
 	var League = {};
@@ -11,19 +10,33 @@ var querystring = require('querystring');
 		exports.LeagueAPI = League;
 	}
 
+	//Private methods and variables
 	var _authKey;
-	var _baseurl = 'http://prod.api.pvp.net/api/lol/';
-	var _region = 'na';
-	var _version = '1.1';
-	var _championUrl = '/champion';
+	var _baseurl = 'http://prod.api.pvp.net/api/lol';
+	var _region = '/na';
+	var _championUrl = '/v1.1/champion';
+	var _gameUrl = '/v1.1/game/by-summoner/'
+	var _leagueUrl = '/v2.1/league/by-summoner/'
+	var _statsUrl = '/v1.1/stats/by-summoner/'
+	var _summonerUrl = '/v1.1/summoner/'
+	var _teamUrl = '/v2.1/team/by-summoner/'
 
 	function _craftUrl(urlType) {
-		return _baseurl + _region + '/v' + _version + urlType + '?api_key=' + _authKey;
+		return _baseurl + _region + urlType + '?api_key=' + _authKey;
+	}
+
+	function _makeRequest(url, errmsg, callback) {
+		_getRequest(url, function(err, result) {
+			if(err) {
+				callback(new Error(errmsg + err));
+			} else {
+				callback(null, result);
+			}
+		});
 	}
 
 	function _getRequest(path, callback) {
 		var response;
-		if(!_authKey) callback(new Error('You have not given an auth key for the API'));
 		
 		http.get(path, function(response) {
 			response.on('data', function(chunk) {
@@ -40,21 +53,55 @@ var querystring = require('querystring');
 		});
 	}
 
-	League.init = function(key, region, version) {
+	//Public Methods
+	League.Stats = {};
+	League.Summoner = {};
+
+	League.init = function(key, region) {
 		_authKey = key;
+		if(region) _region = region;
 	}
 
 	League.Champions = function(callback) {
 		var url = _craftUrl(_championUrl);
+		_makeRequest(url, 'Error getting champions: ', callback);
+	}
 
-		_getRequest(url, function(err, champs) {
-			if(err) {
-				callback(new Error('Error getting champions: ') + err);
-			} else {
-				callback(null, champs);
-			}
-		});
-	};
+	League.Game = function(summonerId, callback) {
+		var url = _craftUrl(_gameUrl + summonerId + '/recent');
+		_makeRequest(url, 'Error getting recent games: ', callback);
+	}
+
+	League.League = function(summonerId, callback) {
+		var url = _craftUrl(_leagueUrl + summonerId);
+		_makeRequest(url, 'Error getting league data: ', callback);
+	}
+
+	League.Stats.Summary = function(summonerId, callback) {
+		var url = _craftUrl(_statsUrl + summonerId + '/summary');
+		_makeRequest(url, 'Error getting summary data: ', callback);
+	}
+
+	League.Stats.Ranked = function(summonerId, callback) {
+		var url = _craftUrl(_statsUrl + summonerId + '/ranked');
+		_makeRequest(url, 'Error getting ranked data: ', callback);
+	}
+
+	League.Summoner.Masteries = function(summonerId, callback) {
+		var url = _craftUrl(_summonerUrl + summonerId + '/masteries');
+		_makeRequest(url, 'Error getting mastery data: ', callback);
+	}
+
+	League.Summoner.Runes = function(summonerId, callback) {
+		var url = _craftUrl(_summonerUrl + summonerId + '/runes');
+		_makeRequest(url, 'Error getting rune data: ', callback);
+	}
+
+	League.Summoner.ByName= function(name, callback) {
+		name = name.split(" ").join("");
+		var url = _craftUrl(_summonerUrl + 'by-name/' + name);
+		_makeRequest(url, 'Error getting rune data: ', callback);
+	}
 
 
 }).call(this);
