@@ -7,7 +7,7 @@ var http = require('http');
 		if (typeof module !== 'undefined' && module.exports) {
 		    exports = module.exports = League;
 		}
-		exports.leagueApi = League;
+		exports.leagueapi = League;
 	}
 
 	//Private methods and variables
