@@ -1,8 +1,7 @@
-leagueApi = require('./lolapi');
+var leagueApi = require('./lolapi');
+leagueApi.init();
 
-leagueApi.init('');
-
-//These should all be undefined if you provide a valid key.
+//These should all be null if you provide a valid key.
 
 leagueApi.Champions(function(err, champs) {
 	console.log(err);
