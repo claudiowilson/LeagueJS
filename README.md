@@ -18,7 +18,7 @@ LolApi.getChampions(true, function(err, chamnps) {
 });
 ```
 
-# Here's the list of methods and their parameters:
+### Here's the list of methods and their parameters:
 `[param] means you can pass null if you don't want to specify this param`
 
 
