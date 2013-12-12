@@ -99,7 +99,6 @@ var http = require('http');
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 		if(freeToPlay) freetoPlayQuery = 'freeToPlay=true&';
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _championUrl + '?' + freetoPlayQuery);
-		console.log(url);
 		_makeRequest(url, 'Error getting champions: ', 'champions', regionAndFunc.callback);
 	}
 
@@ -139,7 +138,6 @@ var http = require('http');
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _summonerUrl + '/' + summonerId + '/masteries?');
-		console.log(url);
 		_makeRequest(url, 'Error getting mastery data: ', 'pages', regionAndFunc.callback);
 	}
 
