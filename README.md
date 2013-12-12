@@ -4,8 +4,12 @@ LeagueJS
 A Javascript Wrapper for the League of Legends API
 
 ## How To Use
+
+Use npm to install it from the npm registry by running `npm install leagueapi`
+
+Put the following in a `server.js` file.
+
 ```Javascript
-npm install leagueapi
 
 var LolApi = require('leagueapi');
 
@@ -17,9 +21,10 @@ LolApi.getChampions(true, function(err, chamnps) {
 	});
 });
 ```
+Run `node server.js`
 
 ### Here's the list of methods and their parameters:
-`[param] means you can pass null if you don't want to specify this param`
+`[param]` means you can pass null if you don't want to specify this parameter
 
 
 ```Javascript
