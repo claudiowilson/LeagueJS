@@ -24,7 +24,7 @@ leagueApi.getChampions(null, function(err, champs) {
 // 	console.log(err);
 // });
 
-/*leagueApi.Stats.getRankedStats(19321078, 3, function(err,data) {
+/*leagueApi.Stats.getRanked(19321078, 3, function(err,data) {
 	console.log(err);
 });*/
 

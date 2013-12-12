@@ -11,15 +11,53 @@ var LolApi = require('leagueapi');
 
 LolApi.init('XXXXXXXXXXXXXXX', 'euw');
 
-LolApi.getChampions(true, 'euw', function(err, chamnps) {
+LolApi.getChampions(true, function(err, chamnps) {
 	champs.forEach(function(champ) {
 		if(champ.freeToPlay) console.log(champ.name + ' is free to play!!');
 	});
 });
 ```
 
-Here's the list of methods and their parameters:
-```Javascript
+# Here's the list of methods and their parameters:
+`[param] means you can pass null if you don't want to specify this param`
 
+
+```Javascript
+	LolApi.Init(ApiKey); //Will default to NA
+	LolApi.Init(ApiKey, region);
+
+	LolApi.getChampions([freeToPlay], region, callback);
+	LolApi.getChampions([freeToPlay], callback);
+
+	LolApi.getRecentGames(summonerId, region, callback);
+	LolApi.getRecentGames(summonerId, callback);
+
+	LolApi.getLeagueData(summonerId, region, callback);
+	LolApi.getLeagueData(summonerId, callback);
+
+	LolApi.getTeams(summonerId, region, callback);
+	LolApi.getTeams(summonerId, callback);
+
+
+	LolApi.Stats.getPlayerSummary(summonerId, [season], region, callback);
+	LolApi.Stats.getPlayerSummary(summonerId, [season], callback);
+
+	LolApi.Stats.getRanked(summonerId, [season], region, callback);
+	LolApi.Stats.getRanked(summonerId, [season], callback);
+
+	LolApi.Summoner.getMasteries(summonerId, region, callback);
+	LolApi.Summoner.getMasteries(summonerId, callback);
+
+	LolApi.Summoner.getRunes(summonerId, region, callback);
+	LolApi.Summoner.getRunes(summonerId, callback);
+
+	LolApi.Summoner.getByID(summonerId, region, callback);
+	LolApi.Summoner.getByID(summonerId, callback);
+
+	LolApi.Summoner.getByName(name, region, callback);
+	LolApi.Summoner.getByName(name, callback);
+
+	LoLApi.Summoner.listNamesByIDs(ids, region, callback);
+	LolApi.Summoner.listNamesByIDs(ids, callback);
 
 ```

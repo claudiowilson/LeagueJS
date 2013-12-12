@@ -94,10 +94,10 @@ var http = require('http');
 		if(region) _region = region;
 	}
 
-	League.getChampions = function(freeToPlayFlag, regionOrFunction, callback) {
+	League.getChampions = function(freeToPlay, regionOrFunction, callback) {
 		var freetoPlayQuery = ''
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
-		if(freeToPlayFlag) freetoPlayQuery = 'freeToPlay=true&';
+		if(freeToPlay) freetoPlayQuery = 'freeToPlay=true&';
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _championUrl + '?' + freetoPlayQuery);
 		console.log(url);
 		_makeRequest(url, 'Error getting champions: ', 'champions', regionAndFunc.callback);
@@ -126,7 +126,7 @@ var http = require('http');
 		_makeRequest(url, 'Error getting summary data: ', 'playerStatSummaries', regionAndFunc.callback);
 	}
 
-	League.Stats.getRankedStats = function(summonerId, season, regionOrFunction, callback) {
+	League.Stats.getRanked = function(summonerId, season, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 		var seasonURL = '';
 
