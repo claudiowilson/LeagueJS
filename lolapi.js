@@ -41,6 +41,10 @@ var http = require('http');
 		});
 	}
 
+	function _getValidSeasonParam(season) {
+		return (season == null || season == 3 || season == 4);
+	}
+
 	function _getCallbackAndRegion(regionOrFunction, callback) {
 		var regionAndFunction = {
 			'region' : _region,
@@ -97,6 +101,9 @@ var http = require('http');
 	League.getChampions = function(freeToPlay, regionOrFunction, callback) {
 		var freetoPlayQuery = ''
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
+
+		if(!(freeToPlay == null || typeof(freetoPlayQuery) == 'boolean')) console.log('Invalid query parameter for freeToPlay: ' + freetoPlay);
+
 		if(freeToPlay) freetoPlayQuery = 'freeToPlay=true&';
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _championUrl + '?' + freetoPlayQuery);
 		_makeRequest(url, 'Error getting champions: ', 'champions', regionAndFunc.callback);
@@ -106,6 +113,7 @@ var http = require('http');
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _gameUrl + '/' + summonerId + '/recent?');
+		console.log(url);
 		_makeRequest(url, 'Error getting recent games: ', 'games', regionAndFunc.callback);
 	}
 
@@ -120,7 +128,12 @@ var http = require('http');
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 		var seasonURL = '';
 
-		if(season) seasonURL = 'season=SEASON' + season + '&';
+		if(_getValidSeasonParam(season)) {
+			if (season) seasonURL = 'season=SEASON' + season + '&';
+		} else {
+			console.log('Invalid query parameter for season: ' + season);
+		}
+
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _statsUrl + '/' + summonerId + '/summary?' + seasonURL);
 		_makeRequest(url, 'Error getting summary data: ', 'playerStatSummaries', regionAndFunc.callback);
 	}
@@ -129,7 +142,12 @@ var http = require('http');
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 		var seasonURL = '';
 
-		if(season) seasonURL = 'season=SEASON' + season + '&';
+		if(_getValidSeasonParam(season)) {
+			if (season) seasonURL = 'season=SEASON' + season + '&';
+		} else {
+			console.log('Invalid query parameter for season: ' + season);
+		}
+
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _statsUrl + '/' + summonerId + '/ranked?' + seasonURL);
 		_makeRequest(url, 'Error getting ranked data: ', 'champions', regionAndFunc.callback);
 	}

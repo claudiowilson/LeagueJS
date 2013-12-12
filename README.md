@@ -20,6 +20,12 @@ LolApi.getChampions(true, function(err, chamnps) {
 		if(champ.freeToPlay) console.log(champ.name + ' is free to play!!');
 	});
 });
+
+LolApi.Summoner.getByName('YOLO Swag 5ever', function(err, summoner) {
+	if(!err) {
+		console.log(summoner);
+	}
+})
 ```
 Run `node server.js`
 
