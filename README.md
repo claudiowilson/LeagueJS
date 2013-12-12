@@ -10,6 +10,16 @@ npm install leagueapi
 var LolApi = require('leagueapi');
 
 LolApi.init('XXXXXXXXXXXXXXX', 'euw');
+
+LolApi.getChampions(true, 'euw', function(err, chamnps) {
+	champs.forEach(function(champ) {
+		if(champ.freeToPlay) console.log(champ.name + ' is free to play!!');
+	});
+});
 ```
 
-Look at app.js for more information
+Here's the list of methods and their parameters:
+```Javascript
+
+
+```

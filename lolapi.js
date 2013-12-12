@@ -69,12 +69,13 @@ var http = require('http');
 			});
 
 			response.on('end', function() {
-				if(response.statusCode != 200) {
+				try {
+					jsonObj = JSON.parse(jsonObj);
+				} catch (e) {
 					callback(response.statusCode);
 					return;
 				}
-
-				jsonObj = JSON.parse(jsonObj);
+				
 				if(jsonObj['status'] && jsonObj['status']['message'] != 200) {
 					callback(jsonObj['status']['message'], null);
 				} else {
@@ -93,10 +94,12 @@ var http = require('http');
 		if(region) _region = region;
 	}
 
-	League.getChampions = function(regionOrFunction, callback) {
+	League.getChampions = function(freeToPlayFlag, regionOrFunction, callback) {
+		var freetoPlayQuery = ''
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
-
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _championUrl + '?');
+		if(freeToPlayFlag) freetoPlayQuery = 'freeToPlay=true&';
+		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _championUrl + '?' + freetoPlayQuery);
+		console.log(url);
 		_makeRequest(url, 'Error getting champions: ', 'champions', regionAndFunc.callback);
 	}
 
