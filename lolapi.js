@@ -98,6 +98,44 @@ var http = require('http');
 		if(region) _region = region;
 	}
 
+	League.getRegions = function(callback) {
+		callback(null, {
+			'na' : 'North America',
+			'euw' : 'Europe West',
+			'eune' : 'Europe Nordic and East'
+		});
+	}
+
+	League.getQueues = function(callback) {
+		callback(null, {
+			2 : 'Normal 5v5 Blind Pick',
+			4 : 'Ranked Solo 5v5',
+			7 : 'Coop vs AI 5v5',
+			8 : 'Normal 3v3',
+			14 : 'Normal 5v5 Draft Pick',
+			16 : 'Dominion 5v5 Blind Pick',
+			17 : 'Dominion 5v5 Draft Pick',
+			25 : 'Dominion Coop vs AI',
+			41 : 'Ranked Team 3v3',
+			42 : 'Ranked Team 5v5',
+			52 : 'Twisted Treeline Coop vs AI',
+			65 : 'ARAM',
+			67 : 'ARAM Coop vs AI'
+		});
+	}
+
+	League.getMapNames = function (callback) {
+		callback(null, {
+			1 : "Summoner's Rift Summer Variant",
+			2 : "Summoner's Rift Autumn Variant",
+			3 : 'The Proving Grounds',
+			4 : 'Twisted Treeline Original Version',
+			8 : 'The Crystal Scar',
+			10 : 'Twisted Treeline Current Version',
+			12 : 'Howling Abyss'
+		});
+	}
+
 	League.getChampions = function(freeToPlay, regionOrFunction, callback) {
 		var freetoPlayQuery = ''
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);

@@ -55,3 +55,6 @@ leagueApi.init('', 'na');
 // 	console.log(err);
 // 	console.log(data);
 // });
+leagueApi.getMapNames(function(err, regions) {
+	console.log(regions[2]);
+});
