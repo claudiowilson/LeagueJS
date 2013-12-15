@@ -37,6 +37,12 @@ Run `node server.js`
 	LolApi.Init(ApiKey); //Will default to NA
 	LolApi.Init(ApiKey, region);
 
+	LolApi.getMapNames(callback);
+
+	LolApi.getRegions(callback);
+
+	LolApi.getQueues(callback);
+
 	LolApi.getChampions([freeToPlay], region, callback);
 	LolApi.getChampions([freeToPlay], callback);
 
@@ -48,7 +54,6 @@ Run `node server.js`
 
 	LolApi.getTeams(summonerId, region, callback);
 	LolApi.getTeams(summonerId, callback);
-
 
 	LolApi.Stats.getPlayerSummary(summonerId, [season], region, callback);
 	LolApi.Stats.getPlayerSummary(summonerId, [season], callback);
