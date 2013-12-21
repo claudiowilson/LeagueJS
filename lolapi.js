@@ -16,11 +16,11 @@ var http = require('http');
 	var _version2Endpoint = 'http://prod.api.pvp.net/api';
 	var _version1Endpoint = 'http://prod.api.pvp.net/api/lol';
 	var _championUrl = '/v1.1/champion';
-	var _gameUrl = '/v1.1/game/by-summoner'
-	var _leagueUrl = '/v2.1/league/by-summoner'
-	var _statsUrl = '/v1.1/stats/by-summoner'
-	var _summonerUrl = '/v1.1/summoner'
-	var _teamUrl = '/v2.1/team/by-summoner'
+	var _gameUrl = '/v1.2/game/by-summoner'
+	var _leagueUrl = '/v2.2/league/by-summoner'
+	var _statsUrl = '/v1.2/stats/by-summoner'
+	var _summonerUrl = '/v1.2/summoner'
+	var _teamUrl = '/v2.2/team/by-summoner'
 
 	function _craftUrl(urlType, region, api) {
 		return urlType + '/' + region + api + 'api_key=' + _authKey;
