@@ -1,6 +1,6 @@
 {
 	"name":"leagueapi",
-	"version":"0.1.7`",
+	"version":"0.1.7",
 	"description": "Wrapper for the League of Legends API",
 	"keywords": ["league", "legends", "wrapper", "api", "client"],
 	"author": {
