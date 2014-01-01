@@ -15,7 +15,7 @@ var LolApi = require('leagueapi');
 
 LolApi.init('XXXXXXXXXXXXXXX', 'euw');
 
-LolApi.getChampions(true, function(err, chamnps) {
+LolApi.getChampions(true, function(err, champs) {
 	champs.forEach(function(champ) {
 		if(champ.freeToPlay) console.log(champ.name + ' is free to play!!');
 	});

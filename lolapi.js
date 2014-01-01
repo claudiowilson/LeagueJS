@@ -140,7 +140,7 @@ var http = require('http');
 		var freetoPlayQuery = ''
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
-		if(!(freeToPlay == null || typeof(freetoPlayQuery) == 'boolean')) console.log('Invalid query parameter for freeToPlay: ' + freetoPlay);
+		if(!(freeToPlay == null || typeof(freetoPlayQuery) == 'boolean')) console.log('Invalid query parameter for freeToPlay: ' + freeToPlay);
 
 		if(freeToPlay) freetoPlayQuery = 'freeToPlay=true&';
 		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _championUrl + '?' + freetoPlayQuery);
