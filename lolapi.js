@@ -13,7 +13,7 @@ var http = require('http');
 	//Private methods and variables
 	var _authKey;
 	var _region = 'na';
-	var _version2Endpoint = 'http://prod.api.pvp.net/api';
+	var _version2Endpoint = 'http://prod.api.pvp.net/api/lol';
 	var _version1Endpoint = 'http://prod.api.pvp.net/api/lol';
 	var _championUrl = '/v1.1/champion';
 	var _gameUrl = '/v1.2/game/by-summoner'
