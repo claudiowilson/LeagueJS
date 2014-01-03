@@ -13,8 +13,7 @@ var http = require('http');
 	//Private methods and variables
 	var _authKey;
 	var _region = 'na';
-	var _version2Endpoint = 'http://prod.api.pvp.net/api/lol';
-	var _version1Endpoint = 'http://prod.api.pvp.net/api/lol';
+	var _endpoint = 'http://prod.api.pvp.net/api/lol';
 	var _championUrl = '/v1.1/champion';
 	var _gameUrl = '/v1.2/game/by-summoner'
 	var _leagueUrl = '/v2.2/league/by-summoner'
@@ -143,14 +142,14 @@ var http = require('http');
 		if(!(freeToPlay == null || typeof(freetoPlayQuery) == 'boolean')) console.log('Invalid query parameter for freeToPlay: ' + freeToPlay);
 
 		if(freeToPlay) freetoPlayQuery = 'freeToPlay=true&';
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _championUrl + '?' + freetoPlayQuery);
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _championUrl + '?' + freetoPlayQuery);
 		_makeRequest(url, 'Error getting champions: ', 'champions', regionAndFunc.callback);
 	}
 
 	League.getRecentGames = function(summonerId, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _gameUrl + '/' + summonerId + '/recent?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _gameUrl + '/' + summonerId + '/recent?');
 		console.log(url);
 		_makeRequest(url, 'Error getting recent games: ', 'games', regionAndFunc.callback);
 	}
@@ -158,7 +157,7 @@ var http = require('http');
 	League.getLeagueData = function(summonerId, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
-		var url = _craftUrl(_version2Endpoint, regionAndFunc.region, _leagueUrl + '/' + summonerId + '?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _leagueUrl + '/' + summonerId + '?');
 		_makeRequest(url, 'Error getting league data: ', null, regionAndFunc.callback);
 	}
 
@@ -172,7 +171,7 @@ var http = require('http');
 			console.log('Invalid query parameter for season: ' + season);
 		}
 
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _statsUrl + '/' + summonerId + '/summary?' + seasonURL);
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _statsUrl + '/' + summonerId + '/summary?' + seasonURL);
 		_makeRequest(url, 'Error getting summary data: ', 'playerStatSummaries', regionAndFunc.callback);
 	}
 
@@ -186,21 +185,21 @@ var http = require('http');
 			console.log('Invalid query parameter for season: ' + season);
 		}
 
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _statsUrl + '/' + summonerId + '/ranked?' + seasonURL);
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _statsUrl + '/' + summonerId + '/ranked?' + seasonURL);
 		_makeRequest(url, 'Error getting ranked data: ', 'champions', regionAndFunc.callback);
 	}
 
 	League.Summoner.getMasteries = function(summonerId, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _summonerUrl + '/' + summonerId + '/masteries?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _summonerUrl + '/' + summonerId + '/masteries?');
 		_makeRequest(url, 'Error getting mastery data: ', 'pages', regionAndFunc.callback);
 	}
 
 	League.Summoner.getRunes = function(summonerId, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _summonerUrl + '/' + summonerId + '/runes?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _summonerUrl + '/' + summonerId + '/runes?');
 		_makeRequest(url, 'Error getting rune data: ', 'pages', regionAndFunc.callback);
 	}
 
@@ -208,25 +207,25 @@ var http = require('http');
 		name = name.split(" ").join("");
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
 
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _summonerUrl + '/by-name/' + name + '?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _summonerUrl + '/by-name/' + name + '?');
 		_makeRequest(url, 'Error getting summoner data using name: ', null, regionAndFunc.callback);
 	}
 
 	League.Summoner.getByID = function(summonerId, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _summonerUrl + '/' + summonerId + '?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _summonerUrl + '/' + summonerId + '?');
 		_makeRequest(url, 'Error getting summoner data: ', null, regionAndFunc.callback);
 	}
 
 	League.Summoner.listNamesByIDs = function(ids, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
-		var url = _craftUrl(_version1Endpoint, regionAndFunc.region, _summonerUrl + '/' + ids + '/name?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _summonerUrl + '/' + ids + '/name?');
 		_makeRequest(url, 'Error getting summoner data using list of ids: ', 'summoners', regionAndFunc.callback);
 	}
 
 	League.getTeams = function(summonerId, regionOrFunction, callback) {
 		var regionAndFunc = _getCallbackAndRegion(regionOrFunction, callback);
-		var url = _craftUrl(_version2Endpoint, regionAndFunc.region, _teamUrl + '/' + summonerId + '?');
+		var url = _craftUrl(_endpoint, regionAndFunc.region, _teamUrl + '/' + summonerId + '?');
 		_makeRequest(url, 'Error getting summoner teams info: ', null, regionAndFunc.callback);
 	}
 
