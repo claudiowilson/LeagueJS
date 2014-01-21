@@ -52,8 +52,8 @@ var http = require('http');
                     return;
                 }
 
-                if (jsonObj['status'] && jsonObj['status']['message'] !== 200) {
-                    callback(jsonObj['status']['message'], null);
+                if (jsonObj.status && jsonObj.status.message !== 200) {
+                    callback(jsonObj.status.message, null);
                 } else {
                     callback(null, jsonObj);
                 }
@@ -89,7 +89,7 @@ var http = require('http');
         };
 
         if (typeof (regionOrFunction) === 'function') {
-            regionAndFunction['callback'] = regionOrFunction;
+            regionAndFunction.callback = regionOrFunction;
         } else if (typeof (regionOrFunction) === 'string') {
             regionAndFunction['region'] = regionOrFunction;
         }
