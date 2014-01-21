@@ -21,6 +21,7 @@
         teamUrl = '/v2.2/team/by-summoner';
 
     League.Stats = {};
+    
     League.Summoner = {};
 
     League.init = function (key, region) {
@@ -178,5 +179,5 @@
         util.makeRequest(url, 'Error getting summoner teams info: ', null, regionAndFunc.callback);
     };
 
-    module.exports = League
+    module.exports = League;
 }());
