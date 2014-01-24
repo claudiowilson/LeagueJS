@@ -1,6 +1,6 @@
 {
     "name": "leagueapi",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Wrapper for the League of Legends API",
     "keywords": [
     "league",
@@ -13,7 +13,7 @@
         "name": "Claudio Wilson",
         "email": "claudiowilson@utexas.edu"
     },
-    "main": "lolapi.js",
+    "main": "lib/lolapi.js",
     "repository": "https://github.com/claudiowilson/LeagueJS",
     "dependencies": {
         "html": "latest"
