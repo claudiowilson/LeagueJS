@@ -77,3 +77,45 @@ Run `node server.js`
 	LolApi.Summoner.listNamesByIDs(ids, callback);
 
 ```
+
+## LeagueJS Gulp Commands
+
+Gulp.js is a streaming build system. Thanks to it's simplicity and code-over-configuration
+we are able to create a simple, efficient and more intuitive build process.
+
+### To get started you need to install Gulp.js globally:
+- `npm install -g gulp`
+
+#### Available gulp commands and their descriptions:
+
+Run JSLint on all js files: 
+
+- `gulp lint`
+	
+Run BDD tests:
+
+- `gulp test`
+	
+Run istabul to generate a code coverage report:
+
+- `gulp test-coverage`
+	
+Run plato to generate a code analysis report:
+
+- `gulp code-report`
+	
+Runs both istanbul and plato in with one command:
+
+- `gulp reports`
+	
+Removes both coverage and report directories created by istanbul and plato
+
+- `gulp clean-reports`
+	
+Sets up a development environment that will watch for code changes then run JSLint and BDD tests upon saving:
+
+- `gulp dev`
+	
+Before submitting a pull request run the following command to run JSLint and BDD tests. Also pass it one of the given flags which will change the projects version number in the package.json:
+
+- `gulp prod [--major, --minor, --patch]`
