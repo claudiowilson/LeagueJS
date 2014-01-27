@@ -3,8 +3,8 @@
 /*global console*/
 'use strict';
 
-var leagueApi = require('./lolapi');
-leagueApi.init('', 'na');
+var leagueApi = require('./lib/lolapi');
+leagueApi.init('', 'euw');
 
 //All the errors should be null if you pass a valid key
 
@@ -34,10 +34,10 @@ leagueApi.getChampions(null, 'na', function (err, champs) {
 //    console.log(data);
 //});
 
-//leagueApi.Stats.getPlayerSummary(40500341, null, function (err, data) {
-//    console.log(err);
-//    console.log(data);
-//});
+leagueApi.Summoner.getByName('Yolo Swag 5ever', null, function (err, data) {
+    console.log(err);
+    console.log(data);
+});
 
 /*
  *
