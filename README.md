@@ -51,6 +51,9 @@ Run `node server.js`
 
 	LolApi.getLeagueData(summonerId, region, callback);
 	LolApi.getLeagueData(summonerId, callback);
+	
+	LolApi.getLeagueEntryData(summonerId, region, callback);
+	LolApi.getLeagueEntryData(summonerId, callback);
 
 	LolApi.getTeams(summonerId, region, callback);
 	LolApi.getTeams(summonerId, callback);
