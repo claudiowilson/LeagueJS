@@ -16,7 +16,7 @@
   "main": "lib/lolapi.js",
   "repository": "https://github.com/claudiowilson/LeagueJS",
   "dependencies": {
-    "html": "latest",
+    "html": "latest"
   },
   "devDependencies": {
     "sinon": "latest",
