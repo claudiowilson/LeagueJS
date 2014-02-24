@@ -37,6 +37,8 @@ Run `node server.js`
 	LolApi.Init(ApiKey); //Will default to NA
 	LolApi.Init(ApiKey, region);
 
+	LolApi.setRateLimit(limitPer10s, limitPer10min);
+	
 	LolApi.getMapNames(callback);
 
 	LolApi.getRegions(callback);
