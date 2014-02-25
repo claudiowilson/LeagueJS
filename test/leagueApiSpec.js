@@ -11,17 +11,17 @@ describe('League of Legends api wrapper test suite', function () {
     var sinon = require('sinon'),
         should = require('should'),
         leagueApi = require('../lib/lolapi'),
-        mockChampionArray = ['Teemo', 'Ahri', 'Vladimir'];
+        mockChampionArray = ['Teemo', 'Ahri', 'Vladimir'],
+        mockSummonersArray = [29228901, 19199530];
 
 
     beforeEach(function () {
         leagueApi.init('input api key here', 'na');
     });
 
-    xit('should be able to retrieve all champions', function (done) {
+    it('should be able to retrieve all champions', function (done) {
 
         leagueApi.getChampions(false, 'na', function (err, res) {
-
             should.not.exist(err);
             should.exist(res);
             res.length.should.be.greaterThan(0);
@@ -29,11 +29,27 @@ describe('League of Legends api wrapper test suite', function () {
         });
     });
 
-    xit('should be able to retrieve all of the free champions', function (done) {
-        done();
+    it('should be able to retrieve all of the free champions', function (done) {
+        leagueApi.getChampions(true, 'na', function (err, res) {
+            should.not.exist(err);
+            should.exist(res);
+            res.length.should.be.equal(10);
+            done();
+        });
     });
 
-    xit('should throw an error if given the wrong type ', function (done) {
+    it('should throw an error if given the wrong type ', function (done) {
         done();
+    });
+    
+    it('should be able to summoners data from a list of ids', function (done) {
+        leagueApi.Summoner.listSummonerDataByIDs(mockSummonersArray, function (err, res) {
+            should.not.exist(err);
+            should.exist(res);
+            mockSummonersArray.forEach(function (id) {
+                should.exist(res[id]);
+            });
+            done();
+        });
     });
 });
