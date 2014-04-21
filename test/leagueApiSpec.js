@@ -16,7 +16,7 @@ describe('League of Legends api wrapper test suite', function () {
 
 
     beforeEach(function () {
-        leagueApi.init('input api key here', 'na');
+        leagueApi.init('aee0b50d-21b0-4e36-b864-75daa2f5df48', 'na');
     });
 
     it('should be able to retrieve all champions', function (done) {
@@ -52,4 +52,13 @@ describe('League of Legends api wrapper test suite', function () {
             done();
         });
     });
+
+    it('should be able to get champion static data', function(done) {
+        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'}
+        leagueApi.Static.getChampionList(options, 'na', function(err, champs) {
+            should.not.exist(err);
+            should.exist(champs);
+            done();
+        });
+    })
 });

@@ -9,8 +9,7 @@
         istanbul = require('gulp-istanbul'),
         clean = require('gulp-clean'),
         exec = require('gulp-exec'),
-        plato = require('gulp-plato'),
-        mversion = require('gulp-mversion');
+        plato = require('gulp-plato');
 
     gulp.task('lint', function () {
         gulp.src(['./lib/*', './test/*', './gulpfile.js'])
@@ -68,22 +67,22 @@
         });
     });
 
-    gulp.task('prod', function () {
-        if (gulp.env.major) {
-            gulp.run('lint', 'test');
-            gulp.src('./package.json')
-                .pipe(mversion('major'))
-                .pipe(gulp.dest('./'));
-        } else if (gulp.env.minor) {
-            gulp.run('lint', 'test');
-            gulp.src('./package.json')
-                .pipe(mversion('minor'))
-                .pipe(gulp.dest('./'));
-        } else if (gulp.env.patch) {
-            gulp.run('lint', 'test');
-            gulp.src('./package.json')
-                .pipe(mversion('patch'))
-                .pipe(gulp.dest('./'));
-        }
-    });
+    // gulp.task('prod', function () {
+    //     if (gulp.env.major) {
+    //         gulp.run('lint', 'test');
+    //         gulp.src('./package.json')
+    //             .pipe(mversion('major'))
+    //             .pipe(gulp.dest('./'));
+    //     } else if (gulp.env.minor) {
+    //         gulp.run('lint', 'test');
+    //         gulp.src('./package.json')
+    //             .pipe(mversion('minor'))
+    //             .pipe(gulp.dest('./'));
+    //     } else if (gulp.env.patch) {
+    //         gulp.run('lint', 'test');
+    //         gulp.src('./package.json')
+    //             .pipe(mversion('patch'))
+    //             .pipe(gulp.dest('./'));
+    //     }
+    // });
 }());

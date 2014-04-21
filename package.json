@@ -28,7 +28,6 @@
     "gulp-istanbul": "~0.1.0",
     "gulp-clean": "~0.2.4",
     "gulp-exec": "~1.0.4",
-    "gulp-plato": "~0.1.1",
-    "gulp-mversion": "~0.1.0"
+    "gulp-plato": "~0.1.1"
   }
 }

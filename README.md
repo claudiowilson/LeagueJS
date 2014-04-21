@@ -81,6 +81,10 @@ Run `node server.js`
 	LoLApi.Summoner.listNamesByIDs(ids, region, callback);
 	LolApi.Summoner.listNamesByIDs(ids, callback);
 
+	options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US', dataById=true}
+	LolApi.Static.getChampionList(options, region, callback);
+	LolApi.Static.getChampionList(options, callback);
+
 ```
 
 ## LeagueJS Gulp Commands
