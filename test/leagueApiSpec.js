@@ -71,7 +71,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of a champion by id', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'}
+        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
         leagueApi.Static.getChampionById(1, options, 'na', function(err, vers) {
             should.not.exist(err);
             should.exist(vers);
@@ -80,7 +80,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get a list of items', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'}
+        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
         leagueApi.Static.getItemList(options, 'na', function(err, vers) {
             should.not.exist(err);
             should.exist(vers);
@@ -89,7 +89,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of an item by id', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'}
+        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
         leagueApi.Static.getItemById(2009, options, 'na', function(err, vers) {
             should.not.exist(err);
             should.exist(vers);
@@ -98,7 +98,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of masteries', function(done) {
-        var options = {masteryListData: 'prereq', version : '4.4.3', locale: 'en_US'}
+        var options = {masteryListData: 'prereq', version : '4.4.3', locale: 'en_US'};
         leagueApi.Static.getMasteryList(options, 'na', function (err, champs) {
             should.not.exist(err);
             should.exist(vers);
@@ -107,8 +107,16 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of a mastery by id', function(done) {
-        var options = {masteryData: 'prereq', version : '4.4.3', locale: 'en_US'}
+        var options = {masteryData: 'prereq', version : '4.4.3', locale: 'en_US'};
         leagueApi.Static.getMasteryList(options, 'na', function (err, champs) {
+            should.not.exist(err);
+            should.exist(vers);
+            done();
+        });
+    });
+
+    it('should be able to get static data of a realm', function(done) {
+        leagueApi.Static.getRealm('na', function (err, champs) {
             should.not.exist(err);
             should.exist(vers);
             done();

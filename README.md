@@ -106,6 +106,15 @@ Run `node server.js`
 	LolApi.Static.getMasteryById(options, region, callback);
 	LolApi.Static.getMasteryById(options, callback);
 
+	LolApi.Static.getRealm(region, callback);
+	LolApi.Static.getRealm(callback);
+
+	LolApi.Static.getRuneList(options, region, callback);
+	LolApi.Static.getRuneById(id, options, callback);
+
+	LolApi.Static.getSummonerSpellList(options, region, callback);
+	LolApi.Static.getSummonerSpellById(id, options, callback);
+
 ```
 
 ## LeagueJS Gulp Commands
