@@ -154,7 +154,3 @@ Removes both coverage and report directories created by istanbul and plato
 Sets up a development environment that will watch for code changes then run JSLint and BDD tests upon saving:
 
 - `gulp dev`
-	
-Before submitting a pull request run the following command to run JSLint and BDD tests. Also pass it one of the given flags which will change the projects version number in the package.json:
-
-- `gulp prod [--major, --minor, --patch]`
