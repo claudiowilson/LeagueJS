@@ -4,21 +4,29 @@
 'use strict';
 
 var leagueApi = require('./lib/lolapi');
-leagueApi.init('', 'euw');
+leagueApi.init('aee0b50d-21b0-4e36-b864-75daa2f5df48', 'euw');
 
 //All the errors should be null if you pass a valid key
-
-leagueApi.getChampions(null, 'na', function (err, champs) {
-    if (err) {
+var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'}
+leagueApi.Static.getVersions('na', function (err, champs) {
+    if(err) {
         console.log(err);
-        return;
+    } else {
+        console.log(champs);
     }
-    champs.forEach(function (champ) {
-        if (champ.freeToPlay) {
-            console.log(champ.name + ' is free to play!!');
-        }
-    });
 });
+
+// leagueApi.getChampions(true, 'na', function (err, champs) {
+//     if (err) {
+//         console.log(err);
+//         return;
+//     }
+//     champs.forEach(function (champ) {
+//         if (champ.freeToPlay) {
+//             console.log(champ.name + ' is free to play!!');
+//         }
+//     });
+// });
 
 /* Returns an error if player has no league data */
 //leagueApi.getLeagueData(22097256, function (err, data) {
@@ -34,10 +42,10 @@ leagueApi.getChampions(null, 'na', function (err, champs) {
 //    console.log(data);
 //});
 
-leagueApi.Summoner.getByName('Yolo Swag 5ever', null, function (err, data) {
-    console.log(err);
-    console.log(data);
-});
+// leagueApi.Summoner.getByName('Yolo Swag 5ever', null, function (err, data) {
+//     console.log(err);
+//     console.log(data);
+// });
 
 /*
  *
