@@ -82,8 +82,23 @@ Run `node server.js`
 	LolApi.Summoner.listNamesByIDs(ids, callback);
 
 	options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US', dataById=true}
+	//doesn't show all options
 	LolApi.Static.getChampionList(options, region, callback);
 	LolApi.Static.getChampionList(options, callback);
+	
+	options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US', dataById=true}
+	//doesn't show all options
+	LolApi.Static.getChampionById(champId, options, region, callback);
+	LolApi.Static.getChampionById(champId, options, callback);
+	
+	options = {itemData: 'consumed'}
+	//doesn't show all possible options
+	LolApi.Static.getItemById(itemId, options, region, callback);
+	LolApi.Static.getItemById(itemId, options, callback);
+	
+	options = {itemListData: 'consumed'}
+	LolApi.Static.getItemList(options, region, callback);
+	LolApi.Static.getItemList(options, callback);
 
 ```
 
