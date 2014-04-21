@@ -100,6 +100,12 @@ Run `node server.js`
 	LolApi.Static.getItemList(options, region, callback);
 	LolApi.Static.getItemList(options, callback);
 
+	LolApi.Static.getMasteryList(options, region, callback);
+	LolApi.Static.getMasteryList(options, callback);
+
+	LolApi.Static.getMasteryById(options, region, callback);
+	LolApi.Static.getMasteryById(options, callback);
+
 ```
 
 ## LeagueJS Gulp Commands
