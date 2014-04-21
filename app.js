@@ -4,7 +4,7 @@
 'use strict';
 
 var leagueApi = require('./lib/lolapi');
-leagueApi.init('aee0b50d-21b0-4e36-b864-75daa2f5df48', 'euw');
+leagueApi.init('your api key here', 'euw');
 
 //All the errors should be null if you pass a valid key
 var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'}
