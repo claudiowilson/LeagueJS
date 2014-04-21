@@ -54,7 +54,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get champion static data', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'}
+        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
         leagueApi.Static.getChampionList(options, 'na', function(err, champs) {
             should.not.exist(err);
             should.exist(champs);
@@ -72,53 +72,53 @@ describe('League of Legends api wrapper test suite', function () {
 
     it('should be able to get static data of a champion by id', function(done) {
         var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
-        leagueApi.Static.getChampionById(1, options, 'na', function(err, vers) {
+        leagueApi.Static.getChampionById(1, options, 'na', function(err, champ) {
             should.not.exist(err);
-            should.exist(vers);
+            should.exist(champ);
             done();
         });
     });
 
     it('should be able to get a list of items', function(done) {
         var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
-        leagueApi.Static.getItemList(options, 'na', function(err, vers) {
+        leagueApi.Static.getItemList(options, 'na', function(err, items) {
             should.not.exist(err);
-            should.exist(vers);
+            should.exist(items);
             done();
         });
     });
 
     it('should be able to get static data of an item by id', function(done) {
         var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
-        leagueApi.Static.getItemById(2009, options, 'na', function(err, vers) {
+        leagueApi.Static.getItemById(2009, options, 'na', function(err, item) {
             should.not.exist(err);
-            should.exist(vers);
+            should.exist(item);
             done();
         });
     });
 
     it('should be able to get static data of masteries', function(done) {
         var options = {masteryListData: 'prereq', version : '4.4.3', locale: 'en_US'};
-        leagueApi.Static.getMasteryList(options, 'na', function (err, champs) {
+        leagueApi.Static.getMasteryList(options, 'na', function (err, masteries) {
             should.not.exist(err);
-            should.exist(vers);
+            should.exist(masteries);
             done();
         });
     });
 
     it('should be able to get static data of a mastery by id', function(done) {
         var options = {masteryData: 'prereq', version : '4.4.3', locale: 'en_US'};
-        leagueApi.Static.getMasteryList(options, 'na', function (err, champs) {
+        leagueApi.Static.getMasteryById(4353, options, 'na', function (err, mastery) {
             should.not.exist(err);
-            should.exist(vers);
+            should.exist(mastery);
             done();
         });
     });
 
     it('should be able to get static data of a realm', function(done) {
-        leagueApi.Static.getRealm('na', function (err, champs) {
+        leagueApi.Static.getRealm('na', function (err, realm) {
             should.not.exist(err);
-            should.exist(vers);
+            should.exist(realm);
             done();
         });
     });
