@@ -38,6 +38,9 @@ Run `node server.js`
 	LolApi.Init(ApiKey, region);
 
 	LolApi.setRateLimit(limitPer10s, limitPer10min);
+
+	LolApi.setEndpoint(newEndpoint);
+	LolApi.getEndpoint();
 	
 	LolApi.getMapNames(callback);
 

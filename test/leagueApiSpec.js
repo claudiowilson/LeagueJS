@@ -16,7 +16,7 @@ describe('League of Legends api wrapper test suite', function () {
 
 
     beforeEach(function () {
-        leagueApi.init('your api key here', 'na');
+        leagueApi.init('your api key here', 'na');        
     });
 
     it('should be able to retrieve all champions', function (done) {
@@ -122,6 +122,21 @@ describe('League of Legends api wrapper test suite', function () {
             done();
         });
     });
+
+    it('should be able to get a new endpoint', function(done) {
+
+        var currentEndpoint = leagueApi.getEndpoint();        
+        should(currentEndpoint).equal('http://prod.api.pvp.net/api/lol');
+        
+        var newEndpointUrl  = "https://eu.api.pvp.net/api/lol"
+        leagueApi.setEndpoint(newEndpointUrl);
+
+        var newEndpoint = leagueApi.getEndpoint();
+        should(newEndpoint).equal(newEndpointUrl);
+
+        done();
+
+    })
 
 
 });
