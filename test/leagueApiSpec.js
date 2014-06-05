@@ -159,7 +159,7 @@ describe('League of Legends api wrapper test suite', function () {
     it('should be able to get a new endpoint', function (done) {
 
         var currentEndpoint = leagueApi.getEndpoint();
-        should(currentEndpoint).equal('http://prod.api.pvp.net/api/lol');
+        should(currentEndpoint).equal('api.pvp.net/api/lol');
 
         var newEndpointUrl = "https://eu.api.pvp.net/api/lol"
         leagueApi.setEndpoint(newEndpointUrl);
