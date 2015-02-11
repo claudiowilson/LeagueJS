@@ -43,7 +43,7 @@ describe('League of Legends api wrapper test suite', function () {
         done();
     });
 
-    it('should be able to summoners data from a list of ids', function (done) {
+    it('should be able to get summoners data from a list of ids', function (done) {
         leagueApi.Summoner.listSummonerDataByIDs(mockSummonersArray, function (err, res) {
             should.not.exist(err);
             should.exist(res);
@@ -157,6 +157,14 @@ describe('League of Legends api wrapper test suite', function () {
         leagueApi.getMatchHistory(mockSummonersArray[0], options, function(err, match) {
             should.not.exist(err);
             should.exist(match);
+            done();
+        });
+    });
+
+    it('should not be able to get current game', function(done) {
+        leagueApi.getCurrentGame(mockSummonersArray[0], function(err, game) {
+            should.exist(err);
+            should.not.exist(game);
             done();
         });
     });
