@@ -12,11 +12,12 @@ describe('League of Legends api wrapper test suite', function () {
         should = require('should'),
         leagueApi = require('../lib/lolapi'),
         mockChampionArray = ['Teemo', 'Ahri', 'Vladimir'],
-        mockSummonersArray = [29228901, 19199530];
+        mockSummonersArray = [29228901, 19199530],
+        mockMatchArray = [1622420185, 1622447158];
 
 
     beforeEach(function () {
-        leagueApi.init('your api key here', 'na');        
+        leagueApi.init('your api key here', 'na');
     });
 
     it('should be able to retrieve all champions', function (done) {
@@ -41,7 +42,7 @@ describe('League of Legends api wrapper test suite', function () {
     it('should throw an error if given the wrong type ', function (done) {
         done();
     });
-    
+
     it('should be able to summoners data from a list of ids', function (done) {
         leagueApi.Summoner.listSummonerDataByIDs(mockSummonersArray, function (err, res) {
             should.not.exist(err);
@@ -123,12 +124,49 @@ describe('League of Legends api wrapper test suite', function () {
         });
     });
 
+
+    it('should be able to get match', function(done) {
+        leagueApi.getMatch(mockMatchArray[0], false, function(err, match) {
+            should.not.exist(err);
+            should.exist(match);
+            done();
+        });
+    });
+    it('should be able to get match with timeline', function(done) {
+        leagueApi.getMatch(mockMatchArray[0], true, function(err, match) {
+            should.not.exist(err);
+            should.exist(match);
+            should.exist(match.timeline);
+            done();
+        });
+    });
+    it('should be able to get match history', function(done) {
+        leagueApi.getMatchHistory(mockSummonersArray[0], null, function(err, match) {
+            should.not.exist(err);
+            should.exist(match);
+            done();
+        });
+    });
+    it('should be able to get match history with options', function(done) {
+        var options = {
+            championIds : [5,10,9,1,35],
+            rankedQueues : ['RANKED_SOLO_5x5', 'RANKED_TEAM_3x3'],
+            beginIndex : 1,
+            endIndex : 5
+        };
+        leagueApi.getMatchHistory(mockSummonersArray[0], options, function(err, match) {
+            should.not.exist(err);
+            should.exist(match);
+            done();
+        });
+    });
+
     it('should be able to get a new endpoint', function(done) {
 
-        var currentEndpoint = leagueApi.getEndpoint();        
-        should(currentEndpoint).equal('http://prod.api.pvp.net/api/lol');
-        
-        var newEndpointUrl  = "https://eu.api.pvp.net/api/lol"
+        var currentEndpoint = leagueApi.getEndpoint();
+        should(currentEndpoint).equal('api.pvp.net/api/lol');
+
+        var newEndpointUrl  = "https://eu.api.pvp.net/api/lol";
         leagueApi.setEndpoint(newEndpointUrl);
 
         var newEndpoint = leagueApi.getEndpoint();
@@ -136,7 +174,21 @@ describe('League of Legends api wrapper test suite', function () {
 
         done();
 
-    })
+    });
 
+    it('should be able to get shards', function(done) {
+        leagueApi.getShards(function(err, shards) {
+            should.not.exist(err);
+            should.exist(shards);
+            done();
+        });
+    });
 
+    it('should be able to get shards by region', function(done) {
+        leagueApi.getShardByRegion('na', function(err, shards) {
+            should.not.exist(err);
+            should.exist(shards);
+            done();
+        });
+    });
 });
