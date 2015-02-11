@@ -169,15 +169,23 @@ describe('League of Legends api wrapper test suite', function () {
         });
     });
 
+    it('should not be able to get featured games', function(done) {
+        leagueApi.getFeaturedGames('na', function(err, games) {
+            should.exist(games);
+            should.not.exist(err);
+            done();
+        });
+    });
+
     it('should be able to get a new endpoint', function(done) {
 
-        var currentEndpoint = leagueApi.getEndpoint();
+        var currentEndpoint = leagueApi.getEndpoint(),
+            newEndpointUrl  = 'https://eu.api.pvp.net/api/lol',
+            newEndpoint;
         should(currentEndpoint).equal('api.pvp.net/api/lol');
 
-        var newEndpointUrl  = "https://eu.api.pvp.net/api/lol";
         leagueApi.setEndpoint(newEndpointUrl);
-
-        var newEndpoint = leagueApi.getEndpoint();
+        newEndpoint = leagueApi.getEndpoint();
         should(newEndpoint).equal(newEndpointUrl);
 
         done();
