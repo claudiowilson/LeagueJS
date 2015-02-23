@@ -46,6 +46,8 @@ Run `node server.js`
 
 	LolApi.getRegions(callback);
 
+	LolApi.getPlatformId(region, callback);
+
 	LolApi.getQueues(callback);
 
 	LolApi.getChampions([freeToPlay], region, callback);
@@ -62,6 +64,18 @@ Run `node server.js`
 
 	LolApi.getTeams(summonerId, region, callback);
 	LolApi.getTeams(summonerId, callback);
+
+	LolApi.getShards(callback);
+	LolApi.getShardByRegion(callback);
+
+	LolApi.getMatch(matchId, [includeTimeline], region, callback);
+
+	options = {championIds: [1,3,4], rankedQueues: ['RANKED_SOLO_5x5', 'RANKED_TEAM_3x3', 'RANKED_TEAM_5x5'], beginIndex: 1, endIndex: 5};
+	LolApi.getMatchHistory(summonerId, [options], region, callback);
+
+	LolApi.getCurrentGame(summonerId, region, callback);
+
+	LolApi.getFeaturedGames(region, callback);
 
 	LolApi.Stats.getPlayerSummary(summonerId, [season], region, callback);
 	LolApi.Stats.getPlayerSummary(summonerId, [season], callback);
