@@ -14,7 +14,10 @@
     "email": "claudiowilson@utexas.edu"
   },
   "main": "lib/lolapi.js",
-  "repository": "https://github.com/claudiowilson/LeagueJS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/claudiowilson/LeagueJS"
+  },
   "dependencies": {
     "html": "latest"
   },
@@ -22,12 +25,22 @@
     "sinon": "latest",
     "mocha": "latest",
     "should": "latest",
-    "gulp": "~3.7.0",
+    "gulp": "~3.4.0",
     "gulp-jshint": "~1.3.4",
     "gulp-mocha": "~0.4.1",
     "gulp-istanbul": "~0.1.0",
     "gulp-clean": "~0.2.4",
     "gulp-exec": "~1.0.4",
     "gulp-plato": "~0.1.1"
-  }
+  },
+  "readme": "LeagueJS\n========\n\nA Javascript Wrapper for the League of Legends API\n\n## How To Use\n\nUse npm to install it from the npm registry by running `npm install leagueapi`\n\nPut the following in a `server.js` file.\n\n```Javascript\n\nvar LolApi = require('leagueapi');\n\nLolApi.init('XXXXXXXXXXXXXXX', 'euw');\n\nLolApi.getChampions(true, function(err, champs) {\n\tchamps.forEach(function(champ) {\n\t\tif(champ.freeToPlay) console.log(champ.name + ' is free to play!!');\n\t});\n});\n\nLolApi.Summoner.getByName('YOLO Swag 5ever', function(err, summoner) {\n\tif(!err) {\n\t\tconsole.log(summoner);\n\t}\n})\n```\nRun `node server.js`\n\n### Here's the list of methods and their parameters:\n`[param]` means you can pass null if you don't want to specify this parameter\n\n\n```Javascript\n\tLolApi.Init(ApiKey); //Will default to NA\n\tLolApi.Init(ApiKey, region);\n\n\tLolApi.setRateLimit(limitPer10s, limitPer10min);\n\n\tLolApi.setEndpoint(newEndpoint);\n\tLolApi.getEndpoint();\n\t\n\tLolApi.getMapNames(callback);\n\n\tLolApi.getRegions(callback);\n\n\tLolApi.getQueues(callback);\n\n\tLolApi.getChampions([freeToPlay], region, callback);\n\tLolApi.getChampions([freeToPlay], callback);\n\n\tLolApi.getRecentGames(summonerId, region, callback);\n\tLolApi.getRecentGames(summonerId, callback);\n\n\tLolApi.getLeagueData(summonerId, region, callback);\n\tLolApi.getLeagueData(summonerId, callback);\n\t\n\tLolApi.getLeagueEntryData(summonerId, region, callback);\n\tLolApi.getLeagueEntryData(summonerId, callback);\n\n\tLolApi.getTeams(summonerId, region, callback);\n\tLolApi.getTeams(summonerId, callback);\n\n\tLolApi.Stats.getPlayerSummary(summonerId, [season], region, callback);\n\tLolApi.Stats.getPlayerSummary(summonerId, [season], callback);\n\n\tLolApi.Stats.getRanked(summonerId, [season], region, callback);\n\tLolApi.Stats.getRanked(summonerId, [season], callback);\n\n\tLolApi.Summoner.getMasteries(summonerId, region, callback);\n\tLolApi.Summoner.getMasteries(summonerId, callback);\n\n\tLolApi.Summoner.getRunes(summonerId, region, callback);\n\tLolApi.Summoner.getRunes(summonerId, callback);\n\n\tLolApi.Summoner.getByID(summonerId, region, callback);\n\tLolApi.Summoner.getByID(summonerId, callback);\n\n\tLolApi.Summoner.getByName(name, region, callback);\n\tLolApi.Summoner.getByName(name, callback);\n\n\tLoLApi.Summoner.listNamesByIDs(ids, region, callback);\n\tLolApi.Summoner.listNamesByIDs(ids, callback);\n\n\toptions = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US', dataById=true}\n\t//doesn't show all options\n\tLolApi.Static.getChampionList(options, region, callback);\n\tLolApi.Static.getChampionList(options, callback);\n\t\n\toptions = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US', dataById=true}\n\t//doesn't show all options\n\tLolApi.Static.getChampionById(champId, options, region, callback);\n\tLolApi.Static.getChampionById(champId, options, callback);\n\t\n\toptions = {itemData: 'consumed'}\n\t//doesn't show all possible options\n\tLolApi.Static.getItemById(itemId, options, region, callback);\n\tLolApi.Static.getItemById(itemId, options, callback);\n\t\n\toptions = {itemListData: 'consumed'}\n\tLolApi.Static.getItemList(options, region, callback);\n\tLolApi.Static.getItemList(options, callback);\n\n\tLolApi.Static.getMasteryList(options, region, callback);\n\tLolApi.Static.getMasteryList(options, callback);\n\n\tLolApi.Static.getMasteryById(options, region, callback);\n\tLolApi.Static.getMasteryById(options, callback);\n\n\tLolApi.Static.getRealm(region, callback);\n\tLolApi.Static.getRealm(callback);\n\n\tLolApi.Static.getRuneList(options, region, callback);\n\tLolApi.Static.getRuneById(id, options, callback);\n\n\tLolApi.Static.getSummonerSpellList(options, region, callback);\n\tLolApi.Static.getSummonerSpellById(id, options, callback);\n\n```\n\n## LeagueJS Gulp Commands\n\nGulp.js is a streaming build system. Thanks to it's simplicity and code-over-configuration\nwe are able to create a simple, efficient and more intuitive build process.\n\n### To get started you need to install Gulp.js globally:\n- `npm install -g gulp`\n\n#### Available gulp commands and their descriptions:\n\nRun JSLint on all js files: \n\n- `gulp lint`\n\t\nRun BDD tests:\n\n- `gulp test`\n\t\nRun istabul to generate a code coverage report:\n\n- `gulp test-coverage`\n\t\nRun plato to generate a code analysis report:\n\n- `gulp code-report`\n\t\nRuns both istanbul and plato in with one command:\n\n- `gulp reports`\n\t\nRemoves both coverage and report directories created by istanbul and plato\n\n- `gulp clean-reports`\n\t\nSets up a development environment that will watch for code changes then run JSLint and BDD tests upon saving:\n\n- `gulp dev`",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/claudiowilson/LeagueJS/issues"
+  },
+  "homepage": "https://github.com/claudiowilson/LeagueJS",
+  "_id": "leagueapi@0.4.3",
+  "_shasum": "7f318bf26f72e5c478ba48ed8b9e99a11eafdd09",
+  "_from": "leagueapi@0.4.3",
+  "_resolved": "https://registry.npmjs.org/leagueapi/-/leagueapi-0.4.3.tgz"
 }
