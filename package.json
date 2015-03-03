@@ -19,7 +19,8 @@
     "url": "https://github.com/claudiowilson/LeagueJS"
   },
   "dependencies": {
-    "html": "latest"
+    "html": "latest",
+    "q": "~1.2.0"
   },
   "devDependencies": {
     "sinon": "latest",
