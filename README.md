@@ -26,6 +26,12 @@ LolApi.Summoner.getByName('YOLO Swag 5ever', function(err, summoner) {
 		console.log(summoner);
 	}
 })
+
+//The wrapper also accepts promises:
+LolApi.Summoner.getByName('YOLO Swag 5ever')
+.then(function (summoner) {
+    console.log(summoner);
+});
 ```
 Run `node server.js`
 
