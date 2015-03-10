@@ -15,10 +15,8 @@ var LolApi = require('leagueapi');
 
 LolApi.init('XXXXXXXXXXXXXXX', 'euw');
 
-LolApi.getChampions(true, function(err, champs) {
-	champs.forEach(function(champ) {
-		if(champ.freeToPlay) console.log(champ.name + ' is free to play!!');
-	});
+LolApi.Static.getChampionList(true, function(err, champs) {
+            console.log(champs.data);
 });
 
 LolApi.Summoner.getByName('YOLO Swag 5ever', function(err, summoner) {
