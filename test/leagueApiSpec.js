@@ -30,6 +30,24 @@ describe('League of Legends api wrapper test suite', function () {
         });
     });
 
+    it('should be able to get the masteries of someone', function (done) {
+        
+        leagueApi.Summoner.getMasteries(19321078, function(err, masteries) {
+            should.not.exist(err);
+            should.exist(masteries);
+            done();
+        });
+    });
+
+    it('should be able to get the runes of someone', function (done) {
+        
+        leagueApi.Summoner.getRunes(19321078, function(err, masteries) {
+            should.not.exist(err);
+            should.exist(masteries);
+            done();
+        });
+    });
+
     it('should be able to retrieve all of the free champions', function (done) {
         leagueApi.getChampions(true, 'na', function (err, res) {
             should.not.exist(err);
