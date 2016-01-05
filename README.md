@@ -31,7 +31,7 @@ LolApi.Summoner.getByName('YOLO Swag 5ever')
     console.log(summoner);
 });
 ```
-Run `node server.js`
+Run `npm install` followed by `node server.js`
 
 ### Here's the list of methods and their parameters:
 `[param]` means you can pass null if you don't want to specify this parameter
@@ -69,13 +69,13 @@ Run `node server.js`
 	LolApi.getTeams(summonerId, region, callback);
 	LolApi.getTeams(summonerId, callback);
 
+	LolApi.getTeam(teamId, region, callback);
+	LolApi.getTeam(teamId, callback);
+
 	LolApi.getShards(callback);
 	LolApi.getShardByRegion(callback);
 
 	LolApi.getMatch(matchId, [includeTimeline], region, callback);
-
-	options = {championIds: [1,3,4], rankedQueues: ['RANKED_SOLO_5x5', 'RANKED_TEAM_3x3', 'RANKED_TEAM_5x5'], beginIndex: 1, endIndex: 5};
-	LolApi.getMatchHistory(summonerId, [options], region, callback);
 
 	LolApi.getCurrentGame(summonerId, region, callback);
 
@@ -101,6 +101,7 @@ Run `node server.js`
 
 	LoLApi.Summoner.listNamesByIDs(ids, region, callback);
 	LolApi.Summoner.listNamesByIDs(ids, callback);
+    
 
 	options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US', dataById=true}
 	//doesn't show all options
