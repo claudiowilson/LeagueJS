@@ -31,7 +31,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get the masteries of someone', function (done) {
-        
+
         leagueApi.Summoner.getMasteries(19321078, function(err, masteries) {
             should.not.exist(err);
             should.exist(masteries);
@@ -40,7 +40,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get the runes of someone', function (done) {
-        
+
         leagueApi.Summoner.getRunes(19321078, function(err, masteries) {
             should.not.exist(err);
             should.exist(masteries);
@@ -73,7 +73,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get champion static data', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
+        var options = {champData: 'allytips,blurb', version: '5.24.2', locale: 'en_US'};
         leagueApi.Static.getChampionList(options, 'na', function(err, champs) {
             should.not.exist(err);
             should.exist(champs);
@@ -90,7 +90,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of a champion by id', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
+        var options = {champData: 'allytips,blurb', version: '5.24.2', locale: 'en_US'};
         leagueApi.Static.getChampionById(1, options, 'na', function(err, champ) {
             should.not.exist(err);
             should.exist(champ);
@@ -99,7 +99,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get a list of items', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
+        var options = {champData: 'allytips,blurb', version: '5.24.2', locale: 'en_US'};
         leagueApi.Static.getItemList(options, 'na', function(err, items) {
             should.not.exist(err);
             should.exist(items);
@@ -108,7 +108,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of an item by id', function(done) {
-        var options = {champData: 'allytips,blurb', version : '4.4.3', locale: 'en_US'};
+        var options = {champData: 'allytips,blurb', version: '5.24.2', locale: 'en_US'};
         leagueApi.Static.getItemById(2009, options, 'na', function(err, item) {
             should.not.exist(err);
             should.exist(item);
@@ -117,7 +117,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of masteries', function(done) {
-        var options = {masteryListData: 'prereq', version : '4.4.3', locale: 'en_US'};
+        var options = {masteryListData: 'prereq', version: '5.24.2', locale: 'en_US'};
         leagueApi.Static.getMasteryList(options, 'na', function (err, masteries) {
             should.not.exist(err);
             should.exist(masteries);
@@ -126,8 +126,8 @@ describe('League of Legends api wrapper test suite', function () {
     });
 
     it('should be able to get static data of a mastery by id', function(done) {
-        var options = {masteryData: 'prereq', version : '4.4.3', locale: 'en_US'};
-        leagueApi.Static.getMasteryById(4353, options, 'na', function (err, mastery) {
+        var options = {masteryData: 'prereq', version: '5.24.2', locale: 'en_US'};
+        leagueApi.Static.getMasteryById(6223, options, 'na', function (err, mastery) {
             should.not.exist(err);
             should.exist(mastery);
             done();
@@ -159,7 +159,7 @@ describe('League of Legends api wrapper test suite', function () {
         });
     });
     it('should be able to get match history', function(done) {
-        leagueApi.getMatchHistory(mockSummonersArray[0], null, function(err, match) {
+        leagueApi.getMatchHistory(mockSummonersArray[0], null, 'na', function(err, match) {
             should.not.exist(err);
             should.exist(match);
             done();
@@ -172,7 +172,7 @@ describe('League of Legends api wrapper test suite', function () {
             beginIndex : 1,
             endIndex : 5
         };
-        leagueApi.getMatchHistory(mockSummonersArray[0], options, function(err, match) {
+        leagueApi.getMatchHistory(mockSummonersArray[0], options, 'na', function(err, match) {
             should.not.exist(err);
             should.exist(match);
             done();
