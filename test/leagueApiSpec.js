@@ -13,7 +13,9 @@ describe('League of Legends api wrapper test suite', function () {
         leagueApi = require('../lib/lolapi'),
         mockChampionArray = ['Teemo', 'Ahri', 'Vladimir'],
         mockSummonersArray = [29228901, 19199530],
-        mockMatchArray = [1622420185, 1622447158];
+        mockMatchArray = [1622420185, 1622447158],
+        mockTeam = 'TEAM-e5d4b050-4699-11e5-8042-c81f66dd32cd'
+        ;
 
 
     beforeEach(function () {
@@ -151,6 +153,7 @@ describe('League of Legends api wrapper test suite', function () {
         });
     });
     it('should be able to get match with timeline', function(done) {
+        this.timeout(2500);
         leagueApi.getMatch(mockMatchArray[0], true, function(err, match) {
             should.not.exist(err);
             should.exist(match);
@@ -190,6 +193,14 @@ describe('League of Legends api wrapper test suite', function () {
     it('should not be able to get featured games', function(done) {
         leagueApi.getFeaturedGames('na', function(err, games) {
             should.exist(games);
+            should.not.exist(err);
+            done();
+        });
+    });
+
+    it('should be able to get team information', function(done) {
+        leagueApi.getTeam(mockTeam, 'euw', function(err, team) {
+            should.exist(team);
             should.not.exist(err);
             done();
         });
