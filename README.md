@@ -13,10 +13,10 @@ Put the following in a `server.js` file.
 
 var LolApi = require('leagueapi');
 
-LolApi.init('XXXXXXXXXXXXXXX', 'euw');
+LolApi.init('XXXXXXXXXXXXXXX', 'na');
 
-LolApi.Static.getChampionList(true, function(err, champs) {
-            console.log(champs.data);
+LolApi.getChampions(true, function(err, champs) {
+    console.log(champs);
 });
 
 LolApi.Summoner.getByName('YOLO Swag 5ever', function(err, summoner) {
