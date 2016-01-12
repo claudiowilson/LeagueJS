@@ -12,7 +12,7 @@ describe('League of Legends api wrapper test suite', function () {
         should = require('should'),
         leagueApi = require('../lib/lolapi'),
         mockChampionArray = ['Teemo', 'Ahri', 'Vladimir'],
-        mockSummonersArray = [29228901, 19199530],
+        mockSummonersArray = [29228901, 19199530, 19442617],
         mockMatchArray = [1622420185, 1622447158],
         mockTeam = 'TEAM-e5d4b050-4699-11e5-8042-c81f66dd32cd'
         ;
@@ -144,7 +144,6 @@ describe('League of Legends api wrapper test suite', function () {
         });
     });
 
-
     it('should be able to get match', function(done) {
         leagueApi.getMatch(mockMatchArray[0], false, function(err, match) {
             should.not.exist(err);
@@ -152,6 +151,7 @@ describe('League of Legends api wrapper test suite', function () {
             done();
         });
     });
+
     it('should be able to get match with timeline', function(done) {
         this.timeout(2500);
         leagueApi.getMatch(mockMatchArray[0], true, function(err, match) {
@@ -161,6 +161,39 @@ describe('League of Legends api wrapper test suite', function () {
             done();
         });
     });
+
+    it('should be able to get League Data', function(done) {
+        leagueApi.getLeagueData(mockSummonersArray[2], 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
+
+    it('should be able to get Team League Data', function(done) {
+        leagueApi.getTeamLeagueData(mockTeam, 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
+
+    it('should be able to get League Data Entry', function(done) {
+        leagueApi.getLeagueEntryData(mockSummonersArray[2], 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
+
+    it('should be able to get Team League Data Entry', function(done) {
+        leagueApi.getTeamLeagueEntryData(mockTeam, 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
+
     it('should be able to get match history', function(done) {
         leagueApi.getMatchHistory(mockSummonersArray[0], null, 'na', function(err, match) {
             should.not.exist(err);
@@ -168,6 +201,7 @@ describe('League of Legends api wrapper test suite', function () {
             done();
         });
     });
+
     it('should be able to get match history with options', function(done) {
         var options = {
             championIds : [5,10,9,1,35],

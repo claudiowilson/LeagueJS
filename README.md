@@ -63,8 +63,14 @@ Run `npm install` followed by `node server.js`
 	LolApi.getLeagueData(summonerId, region, callback);
 	LolApi.getLeagueData(summonerId, callback);
 	
+	LolApi.getTeamLeagueData(teamId, region, callback); // Get LeagueData for given Team ID in given region
+	LolApi.getTeamLeagueData(teamId, callback); // Get LeagueData for given Team ID
+	
 	LolApi.getLeagueEntryData(summonerId, region, callback);
 	LolApi.getLeagueEntryData(summonerId, callback);
+
+    LolApi.getTeamLeagueEntryData(teamId, region, callback); // Get LeagueData Entry for given Team ID in given region
+	LolApi.getTeamLeagueEntryData(teamId, callback); // Get LeagueData Entry for given Team ID
 
     LolApi.getTeams(summonerId, region, callback);
     LolApi.getTeams(summonerId, callback);
