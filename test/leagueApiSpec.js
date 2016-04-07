@@ -236,4 +236,12 @@ describe('League of Legends api wrapper test suite', function () {
             done();
         });
     });
+    
+    it('shoult not be able to get infos from not existing regions', function(done) {
+       leagueApi.Summoner.getByName('', 'eu-na', function(err, sum) {
+           should.exist(err);
+           should.not.exist(sum);
+           done();
+       });
+    });
 });
