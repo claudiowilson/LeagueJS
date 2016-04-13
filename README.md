@@ -145,8 +145,14 @@ Run `npm install` followed by `node server.js`
 	LolApi.Static.getSummonerSpellList(options, region, callback);
 	LolApi.Static.getSummonerSpellById(id, options, callback);
 
-    //Only for enabled tournament api keys
+
+    //The following methods are only for enabled tournament api keys:
+
     LolApi.getMatchForTournament(matchId, tournamentCode, [includeTimeline], region, callback);
+    LolApi.getMatchForTournament(matchId, tournamentCode, [includeTimeline], callback);
+
+    LolApi.getMatchIdsByTournament(tournamentCode, region, callback);
+    LolApi.getMatchIdsByTournament(tournamentCode, callback);
 ```
 
 ## LeagueJS Gulp Commands
