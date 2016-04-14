@@ -13,6 +13,9 @@
     "name": "Claudio Wilson",
     "email": "claudiowilson@utexas.edu"
   },
+  "scripts":{
+      "test": "gulp test"
+  },
   "main": "lib/lolapi.js",
   "repository": {
     "type": "git",
