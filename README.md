@@ -159,6 +159,7 @@ Run `npm install` followed by `node server.js`
     LolApi.Tournament.createTournament = function(name, providerId, callback);
 
     LolApi.Tournament.createCode = function(tournamentId, count, options, callback);
+    LolApi.Tournament.updateCode = function(tournamentCode, options, callback);
 ```
 
 ## LeagueJS Gulp Commands
