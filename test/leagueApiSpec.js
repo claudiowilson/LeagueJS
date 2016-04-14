@@ -19,7 +19,7 @@ describe('League of Legends api wrapper test suite', function () {
 
 
     beforeEach(function () {
-        leagueApi.init('your api key here', 'na');
+        leagueApi.init(process.env.API_TOKEN, process.env.API_ENDPOINT);
     });
 
     it('should be able to retrieve all champions', function (done) {
