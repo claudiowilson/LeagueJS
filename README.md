@@ -145,6 +145,18 @@ Run `npm install` followed by `node server.js`
 	LolApi.Static.getSummonerSpellList(options, region, callback);
 	LolApi.Static.getSummonerSpellById(id, options, callback);
 
+	LolApi.ChampionMastery.getChampions(playerId, region, callback);
+	LolApi.ChampionMastery.getChampions(playerId, callback);
+
+	LolApi.ChampionMastery.getChampion(playerId, championId, region, callback);
+	LolApi.ChampionMastery.getChampion(playerId, championId, callback);
+
+	LolApi.ChampionMastery.getScore(playerId, region, callback);
+	LolApi.ChampionMastery.getScore(playerId, callback);
+
+	LolApi.ChampionMastery.getTopChampions(playerId, count, region, callback);
+	LolApi.ChampionMastery.getTopChampions(playerId, count, callback);
+
 
     //The following methods are only for enabled tournament api keys:
 
@@ -156,13 +168,13 @@ Run `npm install` followed by `node server.js`
 
     LolApi.Tournament.createProvider(region, callbackUrl, callback);
 
-    LolApi.Tournament.createTournament = function(name, providerId, callback);
+    LolApi.Tournament.createTournament(name, providerId, callback);
 
-    LolApi.Tournament.createCode = function(tournamentId, count, options, callback);
-    LolApi.Tournament.updateCode = function(tournamentCode, options, callback);
-    LolApi.Tournament.getCode = function(tournamentCode, callback);
+    LolApi.Tournament.createCode(tournamentId, count, options, callback);
+    LolApi.Tournament.updateCode(tournamentCode, options, callback);
+    LolApi.Tournament.getCode(tournamentCode, callback);
 
-    LolApi.Tournament.getLobbyEventsByCode = function(tournamentCode, callback);
+    LolApi.Tournament.getLobbyEventsByCode(tournamentCode, callback);
 ```
 
 ## LeagueJS Gulp Commands

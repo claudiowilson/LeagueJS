@@ -278,4 +278,36 @@ describe('League of Legends api wrapper test suite', function () {
            done();
        });
     });
+
+    it('should be able to get champion mastery champions', function(done) {
+        leagueApi.ChampionMastery.getChampions(36879107, 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
+
+    it('should be able to get champion mastery champion', function(done) {
+        leagueApi.ChampionMastery.getChampion(36879107, 25, 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
+
+    it('should be able to get champion mastery champions', function(done) {
+        leagueApi.ChampionMastery.getScore(36879107, 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
+
+    it('should be able to get champion mastery champions', function(done) {
+        leagueApi.ChampionMastery.getTopChampions(36879107, 3, 'euw', function(err, data) {
+            should.not.exist(err);
+            should.exist(data);
+            done();
+        });
+    });
 });
