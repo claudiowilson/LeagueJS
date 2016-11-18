@@ -54,7 +54,7 @@ describe('League of Legends api wrapper test suite', function () {
         leagueApi.getChampions(true, 'na', function (err, res) {
             should.not.exist(err);
             should.exist(res);
-            res.length.should.be.equal(10);
+            res.length.should.be.equal(20);
             done();
         });
     });
