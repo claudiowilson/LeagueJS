@@ -7,16 +7,9 @@ describe('Endpoint Testsuite', () => {
     const assert = require('assert');
 
     it('should return the expected url for single values.', (done) => {
-      let url = endpoint.buildURL('euw.api.pvp.net', 'euw', '/v1.0/TestEndpoint', 'DummyName', 'TEST-TOKEN');
+      let url = endpoint.buildURL('api.riotgames.com/lol', 'euw1', '/summoner/v3/summoners/by-name', 'DummyName', 'TEST-TOKEN');
 
-      url.href.should.be.equal('https://euw.api.pvp.net/euw/v1.0/TestEndpoint/dummyname?api_key=TEST-TOKEN');
-      done();
-    });
-
-    it('should return the expected url for array values.', (done) => {
-      let url = endpoint.buildURL('euw.api.pvp.net', 'euw', '/v1.0/TestEndpoint', [ 'DummyName1', 'DummyName2'], 'TEST-TOKEN');
-
-      url.href.should.be.equal('https://euw.api.pvp.net/euw/v1.0/TestEndpoint/dummyname1,dummyname2?api_key=TEST-TOKEN')
+      url.href.should.be.equal('https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/dummyname?api_key=TEST-TOKEN');
       done();
     });
 });
