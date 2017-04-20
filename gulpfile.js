@@ -24,7 +24,7 @@
     });
 
     gulp.task('test', function () {
-        gulp.src('./test/*.js').pipe(mocha({
+        gulp.src('./test/*.test.js').pipe(mocha({
             reporter: 'spec',
             bail: true,
             ui: 'bdd'

@@ -37,6 +37,9 @@
     "gulp-exec": "~1.0.4",
     "gulp-plato": "~0.1.1"
   },
+  "maintainers": [
+    "Marcel Behrmann <mail@marcelbehrmann.de>"
+  ],
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/claudiowilson/LeagueJS/issues"
