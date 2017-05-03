@@ -16,14 +16,13 @@
   "scripts":{
       "test": "gulp test"
   },
-  "main": "lib/lolapi.js",
+  "main": "lib/leaguejs.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/claudiowilson/LeagueJS"
   },
   "dependencies": {
-    "html": "latest",
-    "q": "~1.2.0"
+    "html": "latest"
   },
   "devDependencies": {
     "sinon": "latest",
