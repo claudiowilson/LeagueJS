@@ -6,7 +6,7 @@ LeagueJS
 A Javascript Wrapper for the League of Legends API
 
 ## How To Use
-
+// TODO: rework this doc-part
 Use npm to install it from the npm registry by running `npm install leagueapi`
 
 ```
@@ -18,19 +18,25 @@ Run `npm install` followed by `node server.js`
 TODO: Document config params that can be overwriten
 
 ### Environment Variables
-Instead of giving an Options object to the LeagueJS Constructor some options will be read from the environment
+Some Options can be read from the Environment
 
 *LEAGUE_API_KEY* The value of this environmental variable will be used as authorization token  
-*LEAGUE_API_REGION* The value of this environmental variable will be used as default region
+*LEAGUE_API_PLATFORM_ID* The value of this environmental variable will be used as default platformId. If not provided, 'na1' is used.
+
+Alternatively they can be provided to the League constructor within the options parameter
+```
+const leagueApi = new League({API_KEY: <Your Api key>, PLATFORM_ID: <default api region>})
+```
 
 ### Here's the list of methods and their parameters:
 `[param]` means you can pass null if you don't want to specify this parameter
-
+// TODO: rework this doc-part
 
 ### Samples
 There are some Sample implementations in samples folder.
 
 ## LeagueJS Gulp Commands
+// TODO: propably rework this doc-part
 
 Gulp.js is a streaming build system. Thanks to it's simplicity and code-over-configuration
 we are able to create a simple, efficient and more intuitive build process.
@@ -69,6 +75,20 @@ Sets up a development environment that will watch for code changes then run JSLi
 - `gulp dev`
 
 ## Tests
+
+LEAGUE_API_KEY and LEAGUE_API_PLATFORM_ID will be read from config.json within ```/test/```.
+This is added to .gitignore to prevent publishing your API-key.
+Before running tests you will need to add your developer Key here.
+Structure of the config.json will mirror ```/lib/config.js``` if you want to change other values used for testing
+like rate-limits
+
+```
+// /test/config.json
+{
+	"API_KEY": <your api key>
+}
+```
+
 
 For testing, mocha + chai with needed plugins is used.
 Chai provides a natural, readable interface for test-creation and using the appropriate Plugins keeps tests simple,

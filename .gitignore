@@ -12,3 +12,5 @@ npm-debug.log
 node_modules
 .vs/
  LeagueJS.njsproj
+
+test/config.json

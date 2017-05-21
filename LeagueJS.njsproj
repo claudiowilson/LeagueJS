@@ -21,7 +21,7 @@
         <Compile Include="gulpfile.js" />
         <Compile Include="lib\ApiRequest.js" />
         <Compile Include="lib\config.js" />
-        <Compile Include="lib\league.js" />
+        <Compile Include="lib\LeagueJS.js" />
         <Compile Include="lib\lolapi.js" />
         <Compile Include="lib\rateInfo.js" />
         <Compile Include="lib\rateLimiter.js" />
@@ -29,9 +29,9 @@
         <Compile Include="lib\util.js" />
         <Compile Include="sample\server.js" />
         <Compile Include="test\endpoint.test.js" />
-        <Compile Include="test\league.test.js" />
+        <Compile Include="test\LeagueJS.test.js" />
         <Compile Include="test\leagueApiSpec.js" />
-        <Compile Include="lib\endpoints\endpoint.js" />
+        <Compile Include="lib\endpoints\Endpoint.js" />
         <Compile Include="lib\endpoints\SummonerEndpoint.js" />
         <Compile Include="lib\errors\RateError.js" />
     </ItemGroup>
