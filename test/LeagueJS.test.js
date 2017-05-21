@@ -1,7 +1,7 @@
 describe('League of Legends api wrapper test suite', () => {
     'use strict'
 
-    const LeagueJs = require ('../lib/league');
+    const LeagueJs = require ('../lib/LeagueJS');
     const should = require('should');
     const assert = require('assert');
 

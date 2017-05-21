@@ -16,7 +16,7 @@
   "scripts": {
     "test": "gulp test"
   },
-  "main": "lib/lolapi.js",
+  "main": "lib/LeagueJS.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/claudiowilson/LeagueJS"

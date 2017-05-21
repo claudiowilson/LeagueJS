@@ -1,4 +1,4 @@
-var LeagueJs = require ('../lib/league.js');
+var LeagueJs = require ('../lib/LeagueJS.js');
 
 var api = new LeagueJs({
   platform: 'euw1',
