@@ -67,3 +67,36 @@ Removes both coverage and report directories created by istanbul and plato
 Sets up a development environment that will watch for code changes then run JSLint and BDD tests upon saving:
 
 - `gulp dev`
+
+## Tests
+
+For testing, mocha + chai with needed plugins is used.
+Chai provides a natural, readable interface for test-creation and using the appropriate Plugins keeps tests simple,
+readable and comprehensible.
+
+Some important notes (mostly common unit-testing best practices):
+
+* design your tests so that they also can act as documentation. This means the test-description should explain what is tested,
+and all tests should describe the functionality tested.
+
+* keep tests short and simple and group them into sub-suites where advantageous for a better understanding and discoverability.
+
+* rather write two very short and atomic tests instead of testing multiple things within the same test.
+
+* if a test requires setup, do this setup scoped to this test / sub-suite with the before()/beforeEach() functions mocha provides.
+Don't forget to clean up your setup afterwards with after()/afterEach() if you need to reset it between tests/suites
+
+* always define imports, constants, variables etc. within the respective Test-suite to keep them scoped to that very test-suite
+and to prevent leaking mocked dependencies and variables into other test-suites.
+Same Principle is true for different sub-suites / test-case isolation within the test-suites.
+
+* define mock-objects that are reused on top of the Test-suite and with a unambiguos, speaking name that describes it's purpose.
+
+* to be able to set mocha options within the tests (e.g. timeout() ) easily,
+it is important that the test-cases are defined by using the function syntax, not the ```()=>{}``` syntax.
+
+
+#### possibly deprecated packages
+
+* q
+* html
