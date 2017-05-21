@@ -19,7 +19,7 @@
         <Content Include="package.json" />
         <Content Include="README.md" />
         <Compile Include="gulpfile.js" />
-        <Compile Include="lib\apiRequest.js" />
+        <Compile Include="lib\ApiRequest.class.js" />
         <Compile Include="lib\config.js" />
         <Compile Include="lib\league.js" />
         <Compile Include="lib\lolapi.js" />
