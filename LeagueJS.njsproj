@@ -19,7 +19,7 @@
         <Content Include="package.json" />
         <Content Include="README.md" />
         <Compile Include="gulpfile.js" />
-        <Compile Include="lib\ApiRequest.class.js" />
+        <Compile Include="lib\ApiRequest.js" />
         <Compile Include="lib\config.js" />
         <Compile Include="lib\league.js" />
         <Compile Include="lib\lolapi.js" />
@@ -32,7 +32,7 @@
         <Compile Include="test\league.test.js" />
         <Compile Include="test\leagueApiSpec.js" />
         <Compile Include="lib\endpoints\endpoint.js" />
-        <Compile Include="lib\endpoints\summoner.js" />
+        <Compile Include="lib\endpoints\SummonerEndpoint.js" />
         <Compile Include="lib\errors\RateError.js" />
     </ItemGroup>
     <ItemGroup>

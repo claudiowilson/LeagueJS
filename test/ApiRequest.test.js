@@ -8,7 +8,7 @@ describe('Endpoint Testsuite', function () {
 	chai.use(chaiAsPromised);
 	chai.use(should);
 
-	const ApiRequest = require('../lib/ApiRequest.class');
+	const ApiRequest = require('../lib/ApiRequest');
 
 
 	const mock_urlWithJSONResponse = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion/Aatrox.json';
