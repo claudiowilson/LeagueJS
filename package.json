@@ -22,6 +22,8 @@
     "url": "https://github.com/claudiowilson/LeagueJS"
   },
   "dependencies": {
+    "bluebird": "~3.5.0",
+    "deepmerge": "~1.3.2",
     "html": "latest",
     "q": "~1.2.0",
     "request": "~2.81.0",

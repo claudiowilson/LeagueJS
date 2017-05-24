@@ -24,7 +24,7 @@
         <Compile Include="lib\LeagueJS.js" />
         <Compile Include="lib\lolapi.js" />
         <Compile Include="lib\rateInfo.js" />
-        <Compile Include="lib\rateLimiter.js" />
+        <Compile Include="lib\RateLimiter.js" />
         <Compile Include="lib\requestCache.js" />
         <Compile Include="lib\util.js" />
         <Compile Include="sample\server.js" />
