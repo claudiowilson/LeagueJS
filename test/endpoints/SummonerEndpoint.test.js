@@ -10,6 +10,8 @@ describe('EndpointUtil Testsuite', function () {
 	chai.use(chaiAsPromised);
 	chai.use(should);
 
+	const deepmerge = require('deepmerge');
+
 	// NOTE: add your dev-api key to the config.json before running
 	const config = require('../config.json');
 	process.env.LEAGUE_API_KEY = config.API_KEY;
@@ -18,7 +20,7 @@ describe('EndpointUtil Testsuite', function () {
 		throw new Error("The API_KEY is needed. Please add it to /test/config.json");
 	}
 	const conf = require('../../lib/config');
-	Object.assign(config, conf);
+	let mergedConfig = deepmerge(conf, config);
 
 	const mock_summonerName_valid = 'Colorfulstan';
 	const mock_summonerName_invalid = 'n$ame12!§3';
@@ -28,7 +30,7 @@ describe('EndpointUtil Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new SummonerEndpoint(config);
+		endpoint = new SummonerEndpoint(mergedConfig, ['euw1']);
 	});
 
 	describe('getByName', function () {
