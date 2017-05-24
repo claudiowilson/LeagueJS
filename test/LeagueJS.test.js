@@ -1,30 +1,28 @@
-describe('League of Legends api wrapper test suite', () => {
-    'use strict'
+describe('League of Legends api wrapper test suite', function() {
+	'use strict';
 
-    const LeagueJs = require ('../lib/LeagueJS');
-    const should = require('should');
-    const assert = require('assert');
+	const LeagueJs = require('../lib/LeagueJS');
 
-    it('should apply the config to the Class', (done) => {
-      let api = new LeagueJs({
-        API_KEY: 'test'
-      });
+	const chai = require("chai");
+	const should = chai.should;
+	const expect = chai.expect;
+	chai.use(should);
 
-      api.config.should.have.property('API_KEY');
-      api.config.API_KEY.should.be.equal('test');
-      
-      done();
-    });
+	it('should apply the config to the Class', function() {
+		let api = new LeagueJs({
+			API_KEY: 'test'
+		});
 
-    it('should not run without api key', (done) => {
-      
-      assert.throws(
-        () => {
-            var t = new LeagueJs();
-        },
-        'Did not throw error with empty API_KEY.'
-      )
+		api.config.should.have.property('API_KEY');
+		api.config.API_KEY.should.be.equal('test');
+	});
 
-      done();
-    });
+	it('should not run without api key', function() {
+		expect(() => {
+			new LeagueJs();
+		}, 'Did not throw error with empty API_KEY.').to.throw('API_KEY');
+	});
+	it('inherits all the Utility functionality from LeagueUtil', function () {
+		LeagueJs.should.have.property('getPlatformIds');
+	});
 });
