@@ -4,7 +4,7 @@ var api = new LeagueJs({
   platform: 'euw1',
 });
 
-api.summoner.getByName('EldoranDev').then(
+api.summoner.gettingByName('EldoranDev').then(
   data => {
     console.log(data);
   },

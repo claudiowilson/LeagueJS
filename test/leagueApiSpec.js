@@ -272,7 +272,7 @@ describe('League of Legends api wrapper test suite', function () {
     });
     
     it('shoult not be able to get infos from not existing regions', function(done) {
-       leagueApi.Summoner.getByName('', 'eu-na', function(err, sum) {
+       leagueApi.Summoner.gettingByName('', 'eu-na', function(err, sum) {
            should.exist(err);
            should.not.exist(sum);
            done();

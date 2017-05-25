@@ -33,28 +33,28 @@ describe('EndpointUtil Testsuite', function () {
 		endpoint = new SummonerEndpoint(mergedConfig, ['euw1']);
 	});
 
-	describe('getByName', function () {
+	describe('gettingByName', function () {
 		it('can request a summoner by name', function () {
-			return endpoint.getByName(mock_summonerName_valid, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+			return endpoint.gettingByName(mock_summonerName_valid, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
 		});
 
 		it('throws if name contains invalid characters ', function () {
-			expect(() => {endpoint.getByName(mock_summonerName_invalid, mock_ColorfulstanPlatformId);}).to.throw('$ | !§');
+			expect(() => {endpoint.gettingByName(mock_summonerName_invalid, mock_ColorfulstanPlatformId);}).to.throw('$ | !§');
 		});
 	});
 
 
 	it('can request a summoner by accountId', function () {
-		return endpoint.getByAccount(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+		return endpoint.gettingByAccount(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
 	});
 
-	describe('getById', function () {
+	describe('gettingById', function () {
 		it('works with summonerId', function () {
-			return endpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+			return endpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
 		});
 
 		it('works with accountId', function () {
-			return endpoint.getById(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+			return endpoint.gettingById(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
 		});
 	});
 
@@ -71,19 +71,19 @@ describe('EndpointUtil Testsuite', function () {
 		});
 
 		it('fils and uses the cache on same requests', function () {
-			return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+			return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
 				expect(cachedEnpoint.cache.getStats(), 'no keys were cached').to.have.property('keys').to.equal(1);
 
-				return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+				return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
 					return expect(cachedEnpoint.cache.getStats(), 'no keys were hit').to.have.property('hits').to.equal(1);
 				});
 			});
 		});
 		it('repeated (same) requests should take no time (using cached request)', function () {
 			const time1 = new Date().getTime();
-			 return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+			 return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
 				const time2 = new Date().getTime();
-				 return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+				 return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
 					const time3 = new Date().getTime();
 
 					const delta1 = time2-time1;
@@ -94,8 +94,8 @@ describe('EndpointUtil Testsuite', function () {
 			});
 		});
 		it('repeated (same) requests should yield the same results', function () {
-			return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response1) => {
-				return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response2) => {
+			return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response1) => {
+				return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response2) => {
 					return expect(response1).to.deep.equal(response2);
 				});
 			});
