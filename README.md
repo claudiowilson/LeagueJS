@@ -28,6 +28,87 @@ Alternatively they can be provided to the League constructor within the options 
 const leagueApi = new League({API_KEY: <Your Api key>, PLATFORM_ID: <default api region>})
 ```
 
+### Caching
+
+By default, caching is disabled. If enabled, the default caching is using node-cache with the request-urls as caching-key
+The easiest way to setup caching is to pass a minimum set of caching options to LeagueJS on instantiation
+
+```
+const leagueJS = new LeagueJS({
+	...
+	caching: {
+			isEnabled: true, // enable basic caching
+			defaults: {stdTTL: 120} // add a TTL to all Endpoints you think is appropriate (you can tune it later per Endpoint)
+		}
+	...
+})
+```
+
+Full set of caching defaults:
+```
+{
+	/** the standard ttl as number in seconds for every generated cache element.
+	 * (default: 0)
+	 * */
+	stdTTL: 0,
+
+	/**
+	 * The period in seconds, as a number, used for the automatic delete check interval.
+	 * 0 = no periodic check.
+	 * (default: 600)
+	 */
+	checkperiod: 600,
+
+	/**
+	 * en/disable throwing or passing an error to the callback if attempting to .get a missing or expired value.
+	 * (default: false)
+	 */
+	errorOnMissing: false,
+
+	/**
+	 * en/disable cloning of variables. If true you'll get a copy of the cached variable.
+	 * If false you'll save and get just the reference.
+	 * Note: true is recommended, because it'll behave like a server-based caching.
+	 * You should set false if you want to save mutable objects or other complex types
+	 * with mutability involved and wanted.
+	 */
+	useClones: true
+}
+
+```
+
+You have following options to manipulate which Caching implementation is used or to change the settings for it:
+**NOTE: make sure the public interface of your caching implementation is the same as node-cache uses to prevent incompatibilities.**
+
+```
+const MyCache = require('myCache')
+
+// replacing Cache during instantiation (for all endpoints)
+const leagueJS = new LeagueJS({
+	...
+	caching: {
+			isEnabled: true, // enable caching
+			constructor: MyCache, // set a custom Caching implementation
+		},
+	...
+	})
+
+// replacing Cache within Summoner endpoint
+leagueJS.Summoner.setCache({ stdTTL: 120}, MyCache)
+
+// replacing Cache-options within Summoner endpoint
+leagueJS.Summoner.setCache({ stdTTL: 120})
+
+leagueJS.Summoner.enableCaching();
+leagueJS.Summoner.disableCaching();
+
+// Same options for all endpoints
+leagueJS.setCache({ stdTTL: 120}, MyCache)
+leagueJS.setCache({ stdTTL: 120})
+leagueJS.enableCaching();
+leagueJS.disableCaching();
+```
+
 ### Here's the list of methods and their parameters:
 `[param]` means you can pass null if you don't want to specify this parameter
 // TODO: rework this doc-part

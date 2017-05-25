@@ -39,7 +39,7 @@ describe('EndpointUtil Testsuite', function () {
 		});
 
 		it('throws if name contains invalid characters ', function () {
-			expect(()=>{endpoint.getByName(mock_summonerName_invalid, mock_ColorfulstanPlatformId);}).to.throw('$ | !§');
+			expect(() => {endpoint.getByName(mock_summonerName_invalid, mock_ColorfulstanPlatformId);}).to.throw('$ | !§');
 		});
 	});
 
@@ -55,6 +55,50 @@ describe('EndpointUtil Testsuite', function () {
 
 		it('works with accountId', function () {
 			return endpoint.getById(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+		});
+	});
+
+
+	// Note: tests within this sub-suite are not independent
+	describe('it can use request-caching if enabled', function () { // TODO: better test-design and move to Endpoint tests
+		let cachedEnpoint;
+
+		beforeEach(function () {
+			let configWithCachingEnabled = Object.assign({}, mergedConfig);
+			configWithCachingEnabled.caching.isEnabled = true;
+			cachedEnpoint = new SummonerEndpoint(configWithCachingEnabled, ['euw1']);
+			// cachedEnpoint.setCache({isEnabled: true, defaults: conf.caching.defaults}, require('node-cache'));
+		});
+
+		it('fils and uses the cache on same requests', function () {
+			return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+				expect(cachedEnpoint.cache.getStats(), 'no keys were cached').to.have.property('keys').to.equal(1);
+
+				return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+					return expect(cachedEnpoint.cache.getStats(), 'no keys were hit').to.have.property('hits').to.equal(1);
+				});
+			});
+		});
+		it('repeated (same) requests should take no time (using cached request)', function () {
+			const time1 = new Date().getTime();
+			 return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+				const time2 = new Date().getTime();
+				 return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+					const time3 = new Date().getTime();
+
+					const delta1 = time2-time1;
+					const delta2 = time3-time2;
+					expect(delta1).to.be.at.least(100);
+					expect(delta2).to.be.at.most(10);
+				});
+			});
+		});
+		it('repeated (same) requests should yield the same results', function () {
+			return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response1) => {
+				return cachedEnpoint.getById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response2) => {
+					return expect(response1).to.deep.equal(response2);
+				});
+			});
 		});
 	});
 });
