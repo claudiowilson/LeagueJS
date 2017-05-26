@@ -20,6 +20,7 @@ class TestUtil {
 				summonerId: '19115840',
 				accountId: '21777671',
 				platformId: 'euw1',
+				gameId: 3164960478
 			}
 		};
 		return {
