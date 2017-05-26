@@ -1,0 +1,323 @@
+{
+  "updatedAt": "2017-05-26T12:13:00.503Z",
+  "seasons": {
+	"PRESEASON3": 0,
+	"SEASON3": 1,
+	"PRESEASON2014": 2,
+	"SEASON2014": 3,
+	"PRESEASON2015": 4,
+	"SEASON2015": 5,
+	"PRESEASON2016": 6,
+	"SEASON2016": 7,
+	"PRESEASON2017": 8
+  },
+  "matchMakingQueues": {
+	"CUSTOM": {
+	  "queueType": 0,
+	  "name": "Custom games"
+	},
+	"NORMAL_3x3": {
+	  "queueType": 8,
+	  "name": "Normal 3v3 games"
+	},
+	"NORMAL_5x5_BLIND": {
+	  "queueType": 2,
+	  "name": "Normal 5v5 Blind Pick games"
+	},
+	"NORMAL_5x5_DRAFT": {
+	  "queueType": 14,
+	  "name": "Normal 5v5 Draft Pick games"
+	},
+	"RANKED_SOLO_5x5": {
+	  "queueType": 4,
+	  "name": "Ranked Solo 5v5 games"
+	},
+	"RANKED_PREMADE_5x5*": {
+	  "queueType": 6,
+	  "name": "Ranked Premade 5v5 games"
+	},
+	"RANKED_PREMADE_3x3*": {
+	  "queueType": 9,
+	  "name": "Used for both historical Ranked Premade 3v3 games and current Ranked Flex Twisted Treeline games"
+	},
+	"RANKED_FLEX_TT": {
+	  "queueType": 9,
+	  "name": "Used for both historical Ranked Premade 3v3 games and current Ranked Flex Twisted Treeline games"
+	},
+	"RANKED_TEAM_3x3*": {
+	  "queueType": 41,
+	  "name": "Ranked Team 3v3 games"
+	},
+	"RANKED_TEAM_5x5": {
+	  "queueType": 42,
+	  "name": "Ranked Team 5v5 games"
+	},
+	"ODIN_5x5_BLIND": {
+	  "queueType": 16,
+	  "name": "Dominion 5v5 Blind Pick games"
+	},
+	"ODIN_5x5_DRAFT": {
+	  "queueType": 17,
+	  "name": "Dominion 5v5 Draft Pick games"
+	},
+	"BOT_5x5*": {
+	  "queueType": 7,
+	  "name": "Historical Summoner's Rift Coop vs AI games"
+	},
+	"BOT_ODIN_5x5": {
+	  "queueType": 25,
+	  "name": "Dominion Coop vs AI games"
+	},
+	"BOT_5x5_INTRO": {
+	  "queueType": 31,
+	  "name": "Summoner's Rift Coop vs AI Intro Bot games"
+	},
+	"BOT_5x5_BEGINNER": {
+	  "queueType": 32,
+	  "name": "Summoner's Rift Coop vs AI Beginner Bot games"
+	},
+	"BOT_5x5_INTERMEDIATE": {
+	  "queueType": 33,
+	  "name": "Historical Summoner's Rift Coop vs AI Intermediate Bot games"
+	},
+	"BOT_TT_3x3": {
+	  "queueType": 52,
+	  "name": "Twisted Treeline Coop vs AI games"
+	},
+	"GROUP_FINDER_5x5": {
+	  "queueType": 61,
+	  "name": "Team Builder games"
+	},
+	"ARAM_5x5": {
+	  "queueType": 65,
+	  "name": "ARAM games"
+	},
+	"ONEFORALL_5x5": {
+	  "queueType": 70,
+	  "name": "One for All games"
+	},
+	"FIRSTBLOOD_1x1": {
+	  "queueType": 72,
+	  "name": "Snowdown Showdown 1v1 games"
+	},
+	"FIRSTBLOOD_2x2": {
+	  "queueType": 73,
+	  "name": "Snowdown Showdown 2v2 games"
+	},
+	"SR_6x6": {
+	  "queueType": 75,
+	  "name": "Summoner's Rift 6x6 Hexakill games"
+	},
+	"URF_5x5": {
+	  "queueType": 76,
+	  "name": "Ultra Rapid Fire games"
+	},
+	"ONEFORALL_MIRRORMODE_5x5": {
+	  "queueType": 78,
+	  "name": "One for All (Mirror mode)"
+	},
+	"BOT_URF_5x5": {
+	  "queueType": 83,
+	  "name": "Ultra Rapid Fire games played against AI games"
+	},
+	"NIGHTMARE_BOT_5x5_RANK1": {
+	  "queueType": 91,
+	  "name": "Doom Bots Rank 1 games"
+	},
+	"NIGHTMARE_BOT_5x5_RANK2": {
+	  "queueType": 92,
+	  "name": "Doom Bots Rank 2 games"
+	},
+	"NIGHTMARE_BOT_5x5_RANK5": {
+	  "queueType": 93,
+	  "name": "Doom Bots Rank 5 games"
+	},
+	"ASCENSION_5x5": {
+	  "queueType": 96,
+	  "name": "Ascension games"
+	},
+	"HEXAKILL": {
+	  "queueType": 98,
+	  "name": "Twisted Treeline 6x6 Hexakill games"
+	},
+	"BILGEWATER_ARAM_5x5": {
+	  "queueType": 100,
+	  "name": "Butcher's Bridge games"
+	},
+	"KING_PORO_5x5": {
+	  "queueType": 300,
+	  "name": "King Poro games"
+	},
+	"COUNTER_PICK": {
+	  "queueType": 310,
+	  "name": "Nemesis games"
+	},
+	"BILGEWATER_5x5": {
+	  "queueType": 313,
+	  "name": "Black Market Brawlers games"
+	},
+	"SIEGE": {
+	  "queueType": 315,
+	  "name": "Nexus Siege games"
+	},
+	"DEFINITELY_NOT_DOMINION_5x5": {
+	  "queueType": 317,
+	  "name": "Definitely Not Dominion games"
+	},
+	"ARURF_5X5": {
+	  "queueType": 318,
+	  "name": "All Random URF games"
+	},
+	"ARSR_5x5": {
+	  "queueType": 325,
+	  "name": "All Random Summoner's Rift games"
+	},
+	"TEAM_BUILDER_DRAFT_UNRANKED_5x5": {
+	  "queueType": 400,
+	  "name": "Normal 5v5 Draft Pick games"
+	},
+	"TEAM_BUILDER_DRAFT_RANKED_5x5*": {
+	  "queueType": 410,
+	  "name": "Ranked 5v5 Draft Pick games"
+	},
+	"TEAM_BUILDER_RANKED_SOLO": {
+	  "queueType": 420,
+	  "name": "Ranked Solo games from current season that use Team Builder matchmaking"
+	},
+	"TB_BLIND_SUMMONERS_RIFT_5x5": {
+	  "queueType": 430,
+	  "name": "Normal 5v5 Blind Pick games"
+	},
+	"RANKED_FLEX_SR": {
+	  "queueType": 440,
+	  "name": "Ranked Flex Summoner's Rift games"
+	},
+	"ASSASSINATE_5x5": {
+	  "queueType": 600,
+	  "name": "Blood Hunt Assassin games"
+	},
+	"DARKSTAR_3x3": {
+	  "queueType": 610,
+	  "name": "Darkstar games"
+	}
+  },
+  "mapNames": {
+	"1": {
+	  "name": "Summoner's Rift",
+	  "notes": "Original Summer Variant"
+	},
+	"2": {
+	  "name": "Summoner's Rift",
+	  "notes": "Original Autumn Variant"
+	},
+	"3": {
+	  "name": "The Proving Grounds",
+	  "notes": "Tutorial Map"
+	},
+	"4": {
+	  "name": "Twisted Treeline",
+	  "notes": "Original Version"
+	},
+	"8": {
+	  "name": "The Crystal Scar",
+	  "notes": "Dominion Map"
+	},
+	"10": {
+	  "name": "Twisted Treeline",
+	  "notes": "Current Version"
+	},
+	"11": {
+	  "name": "Summoner's Rift",
+	  "notes": "Current Version"
+	},
+	"12": {
+	  "name": "Howling Abyss",
+	  "notes": "ARAM Map"
+	},
+	"14": {
+	  "name": "Butcher's Bridge",
+	  "notes": "ARAM Map"
+	},
+	"16": {
+	  "name": "Cosmic Ruins",
+	  "notes": "Darkstar Map"
+	}
+  },
+  "gameMatchModes": {
+	"CLASSIC": "Classic Summoner's Rift and Twisted Treeline games",
+	"ODIN": "Dominion/Crystal Scar games",
+	"ARAM": "ARAM games",
+	"TUTORIAL": "Tutorial games",
+	"ONEFORALL": "One for All games",
+	"ASCENSION": "Ascension games",
+	"FIRSTBLOOD": "Snowdown Showdown games",
+	"KINGPORO": "King Poro games",
+	"SIEGE": "Nexus Siege games",
+	"ASSASSINATE": "Blood Hunt Assassin games",
+	"ARSR": "All Random Summoner's Rift games",
+	"DARKSTAR": "Darkstar games"
+  },
+  "gameMatchTypes": {
+	"CUSTOM_GAME": "Custom games",
+	"TUTORIAL_GAME": "Tutorial games",
+	"MATCHED_GAME": "All other games"
+  },
+  "subTypes": {
+	"NONE": "Custom games",
+	"NORMAL": "Summoner's Rift unranked games",
+	"NORMAL_3x3": "Twisted Treeline unranked games",
+	"ODIN_UNRANKED": "Dominion/Crystal Scar games",
+	"ARAM_UNRANKED_5x5": "ARAM / Howling Abyss games",
+	"BOT": "Summoner's Rift and Crystal Scar games played against Intro, Beginner, or Intermediate AI",
+	"BOT_3x3": "Twisted Treeline games played against AI",
+	"RANKED_SOLO_5x5": "Summoner's Rift ranked solo queue games",
+	"RANKED_TEAM_3x3": "Twisted Treeline ranked team games",
+	"RANKED_TEAM_5x5": "Summoner's Rift ranked team games",
+	"ONEFORALL_5x5": "One for All games",
+	"FIRSTBLOOD_1x1": "Snowdown Showdown 1x1 games",
+	"FIRSTBLOOD_2x2": "Snowdown Showdown 2x2 games",
+	"SR_6x6": "Summoner's Rift 6x6 Hexakill games",
+	"CAP_5x5": "Team Builder games",
+	"URF": "Ultra Rapid Fire games",
+	"URF_BOT": "Ultra Rapid Fire games played against AI",
+	"NIGHTMARE_BOT": "Summoner's Rift games played against Nightmare AI",
+	"ASCENSION": "Ascension games",
+	"HEXAKILL": "Twisted Treeline 6x6 Hexakill games",
+	"KING_PORO": "King Poro games",
+	"COUNTER_PICK": "Nemesis games",
+	"BILGEWATER": "Black Market Brawlers games",
+	"SIEGE": "Nexus Siege games",
+	"RANKED_FLEX_TT": "Ranked Flex Twisted Treeline games",
+	"RANKED_FLEX_SR": "Ranked Flex Summoner's Rift games",
+	"DARKSTAR": "Darkstar games"
+  },
+  "playerStatSummaryTypes": {
+	"Unranked": "Summoner's Rift unranked games",
+	"Unranked3x3": "Twisted Treeline unranked games",
+	"OdinUnranked": "Dominion/Crystal Scar games",
+	"AramUnranked5x5": "ARAM / Howling Abyss games",
+	"CoopVsAI": "Summoner's Rift and Crystal Scar games played against AI",
+	"CoopVsAI3x3": "Twisted Treeline games played against AI",
+	"RankedSolo5x5": "Summoner's Rift ranked solo queue games",
+	"RankedTeam3x3": "Twisted Treeline ranked team games",
+	"RankedTeam5x5": "Summoner's Rift ranked team games",
+	"OneForAll5x5": "One for All games",
+	"FirstBlood1x1": "Snowdown Showdown 1x1 games",
+	"FirstBlood2x2": "Snowdown Showdown 2x2 games",
+	"SummonersRift6x6": "Summoner's Rift 6x6 Hexakill games",
+	"CAP5x5": "Team Builder games",
+	"URF": "Ultra Rapid Fire games",
+	"URFBots": "Ultra Rapid Fire games played against AI",
+	"NightmareBot": "Summoner's Rift games played against Nightmare AI",
+	"Ascension": "Ascension games",
+	"Hexakill": "Twisted Treeline 6x6 Hexakill games",
+	"KingPoro": "King Poro games",
+	"CounterPick": "Nemesis games",
+	"Bilgewater": "Black Market Brawlers games",
+	"Siege": "Nexus Siege games",
+	"RankedFlexTT": "Ranked Flex Twisted Treeline games",
+	"RankedFlexSR": "Ranked Flex Summoner's Rift games",
+	"Arsr": "All Random Summoner's Rift games",
+	"Darkstar": "Darkstar games"
+  },
+}
