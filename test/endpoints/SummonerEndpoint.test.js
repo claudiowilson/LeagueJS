@@ -1,4 +1,4 @@
-describe('EndpointUtil Testsuite', function () {
+describe('SummonerEndpoint Testsuite', function () {
 	'use strict';
 
 	const SummonerEndpoint = require('../../lib/endpoints/SummonerEndpoint');

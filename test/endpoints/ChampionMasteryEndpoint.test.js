@@ -1,4 +1,4 @@
-describe('EndpointUtil Testsuite', function () {
+describe('ChampionMasteryEndpoint Testsuite', function () {
 	'use strict';
 
 	const ChampionMasteryEndpoint = require('../../lib/endpoints/ChampionMasteryEndpoint');

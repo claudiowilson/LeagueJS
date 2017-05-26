@@ -63,4 +63,9 @@ describe('EndpointUtil Testsuite', function () {
 			expect(()=>{EndpointUtil.throwIfNameIsInvalid(false,'paramName');}, 'it threw for a boolean/-like value').not.to.throw('$ | !§');
 		});
 	});
+	describe('throwIfRankedQueueConfigIdInvalid()', function () {
+		it('throws if value is invalid', function () {
+			expect(()=>{EndpointUtil.throwIfRankedQueueConfigIdInvalid('somestring', 'paramName');}).to.throw(ParameterError, 'RANKED_SOLO_5x5');
+		});
+	});
 });
