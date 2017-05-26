@@ -13,18 +13,16 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 	const TestUtil = require('../TestUtil');
 	let mergedConfig = TestUtil.getTestConfig();
 
-	const mock_ColorfulstanPlatformId = 'euw1';
-	const mock_ColorfulstanSummonerId = 19115840;
-	const mock_akaliChampionId = 84;
+	const mock_summoner = TestUtil.mocks.summoners.Colorfulstan;
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new ChampionMasteryEndpoint(mergedConfig, ['euw1']);
+		endpoint = new ChampionMasteryEndpoint(mergedConfig, [mock_summoner.platformId]);
 	});
 
 	describe('gettingBySummoner', function () {
 		it('can request a summoner by id', function () {
-			return endpoint.gettingBySummoner(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(result => {
+			return endpoint.gettingBySummoner(mock_summoner.summonerId, mock_summoner.platformId).then(result => {
 				result.should.be.an('Array');
 				result[0].should.have.property('championPoints');
 			});
@@ -32,61 +30,61 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 
 		describe('wrong parameters', function () {
 			it('throws TypeError if summonerId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummoner('somestring', mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummoner('somestring', mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if summonerId is not given', function () {
-				expect(() => {endpoint.gettingBySummoner(mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummoner(mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if summonerId is null', function () {
-				expect(() => {endpoint.gettingBySummoner(null, mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummoner(null, mock_summoner.platformId);}).to.throw(TypeError);
 			});
 		});
 	});
 	describe('gettingBySummonerForChampionId', function () {
 		it('can request a specific champion by its id', function () {
-			return endpoint.gettingBySummonerForChampion(mock_ColorfulstanSummonerId, mock_akaliChampionId, mock_ColorfulstanPlatformId)
+			return endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, TestUtil.mocks.champions.Akali.id, mock_summoner.platformId)
 				.should.eventually.have.property('championPoints');
 		});
 		it('works with numerical strings as championId', function () {
-			return endpoint.gettingBySummonerForChampion(mock_ColorfulstanSummonerId, mock_akaliChampionId + '', mock_ColorfulstanPlatformId)
+			return endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, TestUtil.mocks.champions.Akali.id + '', mock_summoner.platformId)
 				.should.eventually.have.property('championPoints');
 		});
 
 		describe('wrong parameters', function () {
 			it('throws TypeError if summonerId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion('somestring', mock_akaliChampionId, mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummonerForChampion('somestring', TestUtil.mocks.champions.Akali.id, mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if summonerId is not given', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(mock_akaliChampionId, mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummonerForChampion(TestUtil.mocks.champions.Akali.id, mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if summonerId is null', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(null, mock_akaliChampionId, mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummonerForChampion(null, TestUtil.mocks.champions.Akali.id, mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if championId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(mock_ColorfulstanSummonerId, 'somestring', mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, 'somestring', mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if championId is not given', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if championId is null', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(mock_ColorfulstanSummonerId, null, mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, null, mock_summoner.platformId);}).to.throw(TypeError);
 			});
 		});
 	});
 	describe('gettingScoresBySummoner', function () {
 		it('can request the scores for the summoner', function () {
-			return endpoint.gettingScoresBySummoner(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId)
+			return endpoint.gettingScoresBySummoner(mock_summoner.summonerId, mock_summoner.platformId)
 				.should.eventually.be.a('number');
 		});
 		describe('wrong parameters', function () {
 			it('throws TypeError if summonerId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummoner('somestring', mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummoner('somestring', mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if summonerId is not given', function () {
-				expect(() => {endpoint.gettingBySummoner(mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummoner(mock_summoner.platformId);}).to.throw(TypeError);
 			});
 			it('throws TypeError if summonerId is null', function () {
-				expect(() => {endpoint.gettingBySummoner(null, mock_ColorfulstanPlatformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingBySummoner(null, mock_summoner.platformId);}).to.throw(TypeError);
 			});
 		});
 	});

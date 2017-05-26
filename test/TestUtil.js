@@ -12,6 +12,28 @@ class TestUtil {
 		}
 		return mergedConfig;
 	}
+
+	static get mocks(){
+		let summoners = {
+			Colorfulstan: {
+				name: 'Colorfulstan',
+				summonerId: '19115840',
+				accountId: '21777671',
+				platformId: 'euw1',
+			}
+		};
+		return {
+			summoners,
+			invalidData: {
+				summonerName: 'n$ame12!§3'
+			},
+			champions: {
+				Akali: {
+					id: 84
+				}
+			}
+		};
+	}
 }
 
 module.exports = TestUtil;

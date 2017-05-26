@@ -13,42 +13,39 @@ describe('SummonerEndpoint Testsuite', function () {
 	chai.use(chaiAsPromised);
 	chai.use(should);
 
-	const mock_summonerName_valid = 'Colorfulstan';
-	const mock_summonerName_invalid = 'n$ame12!§3';
-	const mock_ColorfulstanPlatformId = 'euw1';
-	const mock_ColorfulstanSummonerId = 19115840;
-	const mock_ColorfulstanAccountId = 21777671;
+	const mock_summoner = TestUtil.mocks.summoners.Colorfulstan;
+	const mock_invalidName = TestUtil.mocks.invalidData.summonerName;
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new SummonerEndpoint(mergedConfig, ['euw1']);
+		endpoint = new SummonerEndpoint(mergedConfig, [mock_summoner.platformId]);
 	});
 
 	describe('gettingByName', function () {
 		it('can request a summoner by name', function () {
-			return endpoint.gettingByName(mock_summonerName_valid, mock_ColorfulstanPlatformId)
+			return endpoint.gettingByName(mock_summoner.name, mock_summoner.platformId)
 				.should.eventually.have.property('accountId');
 		});
 
 		it('throws if name contains invalid characters ', function () {
-			expect(() => {endpoint.gettingByName(mock_summonerName_invalid, mock_ColorfulstanPlatformId);}).to.throw('$ | !§');
+			expect(() => {endpoint.gettingByName(mock_invalidName, mock_summoner.platformId);}).to.throw('$ | !§');
 		});
 	});
 
 
 	it('can request a summoner by accountId', function () {
-		return endpoint.gettingByAccount(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId)
+		return endpoint.gettingByAccount(mock_summoner.accountId, mock_summoner.platformId)
 			.should.eventually.have.property('accountId');
 	});
 
 	describe('gettingById', function () {
 		it('works with summonerId', function () {
-			return endpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId)
+			return endpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId)
 				.should.eventually.have.property('accountId');
 		});
 
 		it('works with accountId', function () {
-			return endpoint.gettingById(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId)
+			return endpoint.gettingById(mock_summoner.accountId, mock_summoner.platformId)
 				.should.eventually.have.property('accountId');
 		});
 	});
@@ -66,12 +63,12 @@ describe('SummonerEndpoint Testsuite', function () {
 		});
 
 		it('fils and uses the cache on same requests', function () {
-			return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+			return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then(() => {
 				expect(cachedEnpoint.cache.getStats(), 'no keys were cached')
 					.to.have.property('keys')
 					.and.that.to.equal(1);
 
-				return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+				return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then(() => {
 					return expect(cachedEnpoint.cache.getStats(), 'no keys were hit')
 						.to.have.property('hits')
 						.and.that.to.equal(1);
@@ -80,9 +77,9 @@ describe('SummonerEndpoint Testsuite', function () {
 		});
 		it('repeated (same) requests should take no time (using cached request)', function () {
 			const time1 = new Date().getTime();
-			 return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+			 return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then(() => {
 				const time2 = new Date().getTime();
-				 return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
+				 return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then(() => {
 					const time3 = new Date().getTime();
 
 					const delta1 = time2-time1;
@@ -93,8 +90,8 @@ describe('SummonerEndpoint Testsuite', function () {
 			});
 		});
 		it('repeated (same) requests should yield the same results', function () {
-			return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response1) => {
-				return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then((response2) => {
+			return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then((response1) => {
+				return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then((response2) => {
 					return expect(response1).to.deep.equal(response2);
 				});
 			});
