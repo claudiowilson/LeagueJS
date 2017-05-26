@@ -22,16 +22,17 @@ describe('ChampionEndpoint Testsuite', function () {
 
 	describe('gettingList', function () {
 		it('can request all champions', function () {
-			return endpoint.gettingList(mock_summoner.platformId).then(result => {
+			return endpoint.gettingList({}, mock_summoner.platformId).then(result => {
 				result.should.have.property('champions');
-				result.champions.should.be.an('Array').and.have.length.at.least(136);
+				result.champions.should.be.an('Array')
+					.with.length.at.least(136);
 			});
 		});
 
 		it('can request the free champions', function () {
-			return endpoint.gettingList({freeToPlay:true}, mock_summoner.platformId)
+			return endpoint.gettingList({freeToPlay: true}, mock_summoner.platformId)
 				.should.eventually.have.property('champions')
-				.and.that.have.length.at.least(10);
+				.with.length.of.at.least(10);
 		});
 	});
 	describe('gettingById', function () {
@@ -43,7 +44,8 @@ describe('ChampionEndpoint Testsuite', function () {
 
 		describe('wrong parameters', function () {
 			it('throws TypeError if championId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingById('somestring', mock_summoner.platformId);}).to.throw(TypeError);
+				expect(() => {endpoint.gettingById('somestring', mock_summoner.platformId);})
+					.to.throw(TypeError);
 			});
 		});
 	});

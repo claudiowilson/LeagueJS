@@ -66,12 +66,12 @@ describe('SummonerEndpoint Testsuite', function () {
 			return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then(() => {
 				expect(cachedEnpoint.cache.getStats(), 'no keys were cached')
 					.to.have.property('keys')
-					.and.that.to.equal(1);
+					.equal(1);
 
 				return cachedEnpoint.gettingById(mock_summoner.summonerId, mock_summoner.platformId).then(() => {
 					return expect(cachedEnpoint.cache.getStats(), 'no keys were hit')
 						.to.have.property('hits')
-						.and.that.to.equal(1);
+						.equal(1);
 				});
 			});
 		});

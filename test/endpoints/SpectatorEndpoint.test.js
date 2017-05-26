@@ -24,8 +24,8 @@ describe('ChampionEndpoint Testsuite', function () {
 		it('can get 5 live games for given platformId', function () {
 			return endpoint.gettingFeaturedGames(mock_summoner.platformId)
 				.should.eventually.have.property('gameList')
-				.and.that.to.be.an('Array')
-				.and.that.to.have.length(5);
+				.an('Array')
+				.with.lengthOf(5);
 		});
 	});
 	describe('gettingActiveGame', function () {

@@ -31,16 +31,16 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 		it('can request the matchlist for an account', function () {
 			return endpoint.gettingListByAccount(mock_summoner.accountId, {}, mock_summoner.platformId)
 				.should.eventually.have.property('matches')
-				.and.that.to.be.an('Array')
-				.and.that.to.have.length.at.least(388);
+				.an('Array')
+				.with.length.of.at.least(388);
 		});
 	});
 	describe('gettingRecentListByAccount', function () {
 		it('can request the most recent matches for an account', function () {
 			return endpoint.gettingRecentListByAccount(mock_summoner.accountId, mock_summoner.platformId)
 				.should.eventually.have.property('matches')
-				.and.that.to.be.an('Array')
-				.and.that.to.have.length.at.most(20);
+				.an('Array')
+				.with.length.of.at.most(20);
 		});
 	});
 	describe('gettingTimelineById', function () {

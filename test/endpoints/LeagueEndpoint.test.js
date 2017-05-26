@@ -25,14 +25,14 @@ describe('LeagueEndpoint Testsuite', function () {
 		it('can request the challenger league for a region/queue', function () {
 			return endpoint.gettingChallengerLeague(mock_rankedSoloQueueConfigId, mock_summoner.platformId)
 				.should.eventually.have.property('queue')
-				.and.that.to.equal(mock_rankedSoloQueueConfigId);
+				.equal(mock_rankedSoloQueueConfigId);
 		});
 	});
 	describe('gettingMasterLeague', function () {
 		it('can request the master league for a region/queue', function () {
 			return endpoint.gettingMasterLeague(mock_rankedSoloQueueConfigId, mock_summoner.platformId)
 				.should.eventually.have.property('queue')
-				.and.that.to.equal(mock_rankedSoloQueueConfigId);
+				.equal(mock_rankedSoloQueueConfigId);
 		});
 	});
 	describe('gettingLeagueForSummonerId', function () {
