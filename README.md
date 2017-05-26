@@ -166,7 +166,15 @@ like rate-limits
 ```
 // /test/config.json
 {
-	"API_KEY": <your api key>
+	"API_KEY": <your api key>,
+	  "limits": {
+	  // for running the API-tests on CI a lot of this is recommended to be set to false, so that the RateLimiter will
+	  // space out the requests to prevent hitting the rate limit.
+	  // When running single test-suites during development it should be true to speed up execution significantly
+        "allowBursts": true,
+        "per10": 10,
+        "per600": 500
+      }
 }
 ```
 
