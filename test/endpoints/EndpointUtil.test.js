@@ -68,4 +68,15 @@ describe('EndpointUtil Testsuite', function () {
 			expect(()=>{EndpointUtil.throwIfRankedQueueConfigIdInvalid('somestring', 'paramName');}).to.throw(ParameterError, 'RANKED_SOLO_5x5');
 		});
 	});
+	describe('throwIfNotObject()', function () {
+		it('throws if value is invalid', function () {
+			expect(()=>{EndpointUtil.throwIfNotObject('somestring', 'paramName');}, 'did not throw with string').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotObject(4, 'paramName');}, 'did not throw with number').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotObject(true, 'paramName');}, 'did not throw with boolean').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotObject(new Function(), 'paramName');}, 'did not throw with Function').to.throw(TypeError);
+		});
+		it('does not throw with objects', function () {
+			expect(()=>{EndpointUtil.throwIfNotObject({}, 'paramName');}).not.to.throw(TypeError);
+		});
+	});
 });
