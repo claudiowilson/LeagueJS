@@ -47,4 +47,20 @@ describe('EndpointUtil Testsuite', function () {
 			expect(()=>{EndpointUtil.throwIfNameIsInvalid('na 123 me._');}).not.to.throw('$ | !§');
 		});
 	});
+	describe('throwIfNotBoolean()', function () {
+		it('throws if value is not a boolean', function () {
+			expect(()=>{EndpointUtil.throwIfNotBoolean('1', 'paramName');}).to.throw();
+			expect(()=>{EndpointUtil.throwIfNotBoolean('0', 'paramName');}).to.throw();
+			expect(()=>{EndpointUtil.throwIfNotBoolean(1, 'paramName');}).to.throw();
+			expect(()=>{EndpointUtil.throwIfNotBoolean(0, 'paramName');}).to.throw();
+			expect(()=>{EndpointUtil.throwIfNotBoolean('True', 'paramName');}).to.throw();
+			expect(()=>{EndpointUtil.throwIfNotBoolean('False', 'paramName');}).to.throw();
+		});
+		it('does not throw if value is boolean or booleanlike string', function () {
+			expect(()=>{EndpointUtil.throwIfNameIsInvalid('true','paramName');}, 'it threw for a boolean/-like value').not.to.throw('$ | !§');
+			expect(()=>{EndpointUtil.throwIfNameIsInvalid('false','paramName');}, 'it threw for a boolean/-like value').not.to.throw('$ | !§');
+			expect(()=>{EndpointUtil.throwIfNameIsInvalid(true,'paramName');}, 'it threw for a boolean/-like value').not.to.throw('$ | !§');
+			expect(()=>{EndpointUtil.throwIfNameIsInvalid(false,'paramName');}, 'it threw for a boolean/-like value').not.to.throw('$ | !§');
+		});
+	});
 });
