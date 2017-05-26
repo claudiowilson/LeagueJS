@@ -10,17 +10,8 @@ describe('ChampionEndpoint Testsuite', function () {
 	chai.use(chaiAsPromised);
 	chai.use(should);
 
-	const deepmerge = require('deepmerge');
-
-	// NOTE: add your dev-api key to the config.json before running
-	const config = require('../config.json');
-	process.env.LEAGUE_API_KEY = config.API_KEY;
-	process.env.LEAGUE_API_PLATFORM_ID = config.LEAGUE_API_PLATFORM_ID || 'na1';
-	if (typeof config.API_KEY === 'undefined' || config.API_KEY === '') {
-		throw new Error("The API_KEY is needed. Please add it to /test/config.json");
-	}
-	const conf = require('../../lib/config');
-	let mergedConfig = deepmerge(conf, config);
+	const TestUtil = require('../TestUtil');
+	let mergedConfig = TestUtil.getTestConfig();
 
 	const mock_ColorfulstanPlatformId = 'euw1';
 	const mock_akaliChampionId = 84;
@@ -39,16 +30,16 @@ describe('ChampionEndpoint Testsuite', function () {
 		});
 
 		it('can request the free champions', function () {
-			return endpoint.gettingList(mock_ColorfulstanPlatformId, {freeToPlay:true}).then(result => {
-				result.should.have.property('champions').and.have.length.at.least(10);
-			});
+			return endpoint.gettingList(mock_ColorfulstanPlatformId, {freeToPlay:true})
+				.should.eventually.have.property('champions')
+				.and.that.have.length.at.least(10);
 		});
 	});
 	describe('gettingById', function () {
 		it('can request a specific champion', function () {
-			return endpoint.gettingById(mock_akaliChampionId, mock_ColorfulstanPlatformId).then(result => {
-				result.should.have.property('freeToPlay');
-			});
+			return endpoint.gettingById(mock_akaliChampionId, mock_ColorfulstanPlatformId)
+				.should.eventually.have.property('freeToPlay');
+
 		});
 
 		describe('wrong parameters', function () {

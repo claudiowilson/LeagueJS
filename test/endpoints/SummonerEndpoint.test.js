@@ -3,24 +3,15 @@ describe('SummonerEndpoint Testsuite', function () {
 
 	const SummonerEndpoint = require('../../lib/endpoints/SummonerEndpoint');
 
+	const TestUtil = require('../TestUtil');
+	let mergedConfig = TestUtil.getTestConfig();
+
 	const chai = require("chai");
 	const chaiAsPromised = require("chai-as-promised");
 	const should = chai.should;
 	const expect = chai.expect;
 	chai.use(chaiAsPromised);
 	chai.use(should);
-
-	const deepmerge = require('deepmerge');
-
-	// NOTE: add your dev-api key to the config.json before running
-	const config = require('../config.json');
-	process.env.LEAGUE_API_KEY = config.API_KEY;
-	process.env.LEAGUE_API_PLATFORM_ID = config.LEAGUE_API_PLATFORM_ID || 'na1';
-	if (typeof config.API_KEY === 'undefined' || config.API_KEY === '') {
-		throw new Error("The API_KEY is needed. Please add it to /test/config.json");
-	}
-	const conf = require('../../lib/config');
-	let mergedConfig = deepmerge(conf, config);
 
 	const mock_summonerName_valid = 'Colorfulstan';
 	const mock_summonerName_invalid = 'n$ame12!§3';
@@ -35,7 +26,8 @@ describe('SummonerEndpoint Testsuite', function () {
 
 	describe('gettingByName', function () {
 		it('can request a summoner by name', function () {
-			return endpoint.gettingByName(mock_summonerName_valid, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+			return endpoint.gettingByName(mock_summonerName_valid, mock_ColorfulstanPlatformId)
+				.should.eventually.have.property('accountId');
 		});
 
 		it('throws if name contains invalid characters ', function () {
@@ -45,16 +37,19 @@ describe('SummonerEndpoint Testsuite', function () {
 
 
 	it('can request a summoner by accountId', function () {
-		return endpoint.gettingByAccount(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+		return endpoint.gettingByAccount(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId)
+			.should.eventually.have.property('accountId');
 	});
 
 	describe('gettingById', function () {
 		it('works with summonerId', function () {
-			return endpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+			return endpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId)
+				.should.eventually.have.property('accountId');
 		});
 
 		it('works with accountId', function () {
-			return endpoint.gettingById(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId).should.eventually.have.property('accountId');
+			return endpoint.gettingById(mock_ColorfulstanAccountId, mock_ColorfulstanPlatformId)
+				.should.eventually.have.property('accountId');
 		});
 	});
 
@@ -72,10 +67,14 @@ describe('SummonerEndpoint Testsuite', function () {
 
 		it('fils and uses the cache on same requests', function () {
 			return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
-				expect(cachedEnpoint.cache.getStats(), 'no keys were cached').to.have.property('keys').to.equal(1);
+				expect(cachedEnpoint.cache.getStats(), 'no keys were cached')
+					.to.have.property('keys')
+					.and.that.to.equal(1);
 
 				return cachedEnpoint.gettingById(mock_ColorfulstanSummonerId, mock_ColorfulstanPlatformId).then(() => {
-					return expect(cachedEnpoint.cache.getStats(), 'no keys were hit').to.have.property('hits').to.equal(1);
+					return expect(cachedEnpoint.cache.getStats(), 'no keys were hit')
+						.to.have.property('hits')
+						.and.that.to.equal(1);
 				});
 			});
 		});
@@ -88,8 +87,8 @@ describe('SummonerEndpoint Testsuite', function () {
 
 					const delta1 = time2-time1;
 					const delta2 = time3-time2;
-					expect(delta1).to.be.at.least(100);
-					expect(delta2).to.be.at.most(10);
+					 delta1.should.be.at.least(100);
+					 delta2.should.be.at.most(10);
 				});
 			});
 		});
