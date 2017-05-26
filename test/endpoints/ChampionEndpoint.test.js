@@ -29,7 +29,7 @@ describe('ChampionEndpoint Testsuite', function () {
 		});
 
 		it('can request the free champions', function () {
-			return endpoint.gettingList(mock_summoner.platformId, {freeToPlay:true})
+			return endpoint.gettingList({freeToPlay:true}, mock_summoner.platformId)
 				.should.eventually.have.property('champions')
 				.and.that.have.length.at.least(10);
 		});
