@@ -32,6 +32,11 @@ class TestUtil {
 				Akali: {
 					id: 84
 				}
+			},
+			items: {
+				FaeriCharm: {
+					id: 1004
+				}
 			}
 		};
 	}
