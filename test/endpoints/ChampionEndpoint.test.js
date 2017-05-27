@@ -17,7 +17,8 @@ describe('ChampionEndpoint Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new ChampionEndpoint(mergedConfig, [mock_summoner.platformId]);
+		let {per10, per600, allowBursts} = mergedConfig.limits;
+		endpoint = new ChampionEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
 	describe('gettingList', function () {

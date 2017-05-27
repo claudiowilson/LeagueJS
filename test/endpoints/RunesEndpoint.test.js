@@ -18,7 +18,8 @@ describe('ChampionEndpoint Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new RunesEndpoint(mergedConfig, [mock_summoner.platformId]);
+		let {per10, per600, allowBursts} = mergedConfig.limits;
+		endpoint = new RunesEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
 	describe('gettingBySummoner', function () {

@@ -18,7 +18,8 @@ describe('LeagueEndpoint Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new LeagueEndpoint(mergedConfig, [mock_summoner.platformId]);
+		let {per10, per600, allowBursts} = mergedConfig.limits;
+		endpoint = new LeagueEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
 	describe('gettingChallengerLeague', function () {

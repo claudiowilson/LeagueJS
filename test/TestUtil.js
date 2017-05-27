@@ -1,7 +1,8 @@
 const deepmerge = require('deepmerge');
+const LeagueUtil = require('../lib/LeagueUtil');
 
 class TestUtil {
-	static getTestConfig(){
+	static getTestConfig() {
 		const testConfig = require('./testConfig.json');
 		const defaultConfig = require('../lib/config');
 		const mergedConfig = deepmerge(defaultConfig, testConfig);
@@ -13,7 +14,11 @@ class TestUtil {
 		return mergedConfig;
 	}
 
-	static get mocks(){
+	static createRateLimiter(per10, per600, allowBursts){
+		return LeagueUtil.createRateLimiter(per10, per600, allowBursts);
+	}
+
+	static get mocks() {
 		let summoners = {
 			Colorfulstan: {
 				name: 'Colorfulstan',
@@ -28,16 +33,10 @@ class TestUtil {
 			invalidData: {
 				summonerName: 'n$ame12!§3'
 			},
-			champions: {
-				Akali: {
-					id: 84
-				}
-			},
-			items: {
-				FaeriCharm: {
-					id: 1004
-				}
-			}
+			champions: {Akali: {id: 84}},
+			items: {FaeriCharm: {id: 1004}},
+			masteries: {Fury: {id: 6111}},
+			runes: {Fury: {id: 6111}}
 		};
 	}
 }

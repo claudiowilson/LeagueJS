@@ -18,7 +18,8 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new MatchEndpoint(mergedConfig, [mock_summoner.platformId]);
+		let {per10, per600, allowBursts} = mergedConfig.limits;
+		endpoint = new MatchEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
 	describe('gettingById', function () {

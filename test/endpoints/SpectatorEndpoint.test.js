@@ -17,7 +17,8 @@ describe('ChampionEndpoint Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new SpectatorEndpoint(mergedConfig, [mock_summoner.platformId]);
+		let {per10, per600, allowBursts} = mergedConfig.limits;
+		endpoint = new SpectatorEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
 	describe('getttingFeaturedGames', function () {
@@ -37,7 +38,9 @@ describe('ChampionEndpoint Testsuite', function () {
 		// Could be isolated by using either http interceptor or mocking ApiRequest or Endpoint (with 'rewire' for example)
 		beforeEach(function () {
 			const SummonerEndpoint = require('../../lib/endpoints/SummonerEndpoint');
-			const summonerEndpoint = new SummonerEndpoint(mergedConfig, [mock_summoner.platformId]);
+
+			let {per10, per600, allowBursts} = mergedConfig.limits;
+			const summonerEndpoint = new SummonerEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 			return endpoint.gettingFeaturedGames(mock_summoner.platformId).then(({gameList}) => {
 				return summonerEndpoint.gettingByName(gameList[0].participants[0].summonerName, mock_summoner.platformId).then(summoner => {
 					summonerFromFeaturedGames = summoner;

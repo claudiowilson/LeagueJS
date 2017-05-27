@@ -16,7 +16,7 @@ describe('ChampionEndpoint Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new LolStatusEndpoint(mergedConfig, ['na1']);
+		endpoint = new LolStatusEndpoint(mergedConfig);
 	});
 
 	it('gets the status of the shard specified by the platformId', function () {

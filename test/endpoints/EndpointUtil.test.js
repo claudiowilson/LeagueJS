@@ -12,6 +12,8 @@ describe('EndpointUtil Testsuite', function () {
 	// chai.use(chaiAsPromised);
 	// chai.use(should);
 
+	const TestUtil = require('../TestUtil');
+
 	it('throwIfParamIsArray throws if given Parameter is an Array', function () {
 		expect(()=>{EndpointUtil.throwIfParamIsArray([1,2,3], 'someParameterName');}).to.throw(ParameterError, 'someParameterName');
 		expect(()=>{EndpointUtil.throwIfParamIsArray(1);}).not.to.throw(ParameterError);
@@ -77,6 +79,22 @@ describe('EndpointUtil Testsuite', function () {
 		});
 		it('does not throw with objects', function () {
 			expect(()=>{EndpointUtil.throwIfNotObject({}, 'paramName');}).not.to.throw(TypeError);
+		});
+	});
+	describe('throwIfNotRateLimiter()', function () {
+		it('throws if value is not a RateLimiter', function () {
+			expect(()=>{EndpointUtil.throwIfNotRateLimiter('somestring', 'paramName');}, 'did not throw with string').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotRateLimiter(4, 'paramName');}, 'did not throw with number').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotRateLimiter(true, 'paramName');}, 'did not throw with boolean').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotRateLimiter(new Function(), 'paramName');}, 'did not throw with Function').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotRateLimiter({}, 'paramName');}, 'did not throw with object').to.throw(TypeError);
+			expect(()=>{EndpointUtil.throwIfNotRateLimiter({
+				per10:{na1: {}},
+				per600:{na1: {}},
+			}, 'paramName');}, 'did not throw with missing Ratelimiters').to.throw(TypeError);
+		});
+		it('does not throw with RateLimiter instance', function () {
+			expect(()=>{EndpointUtil.throwIfNotRateLimiter(TestUtil.createRateLimiter(1,1,true), 'paramName');}).not.to.throw(TypeError);
 		});
 	});
 });

@@ -18,7 +18,8 @@ describe('SummonerEndpoint Testsuite', function () {
 
 	let endpoint;
 	beforeEach(function () {
-		endpoint = new SummonerEndpoint(mergedConfig, [mock_summoner.platformId]);
+		let {per10, per600, allowBursts} = mergedConfig.limits;
+		endpoint = new SummonerEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
 	describe('gettingByName', function () {
@@ -58,7 +59,9 @@ describe('SummonerEndpoint Testsuite', function () {
 		beforeEach(function () {
 			let configWithCachingEnabled = Object.assign({}, mergedConfig);
 			configWithCachingEnabled.caching.isEnabled = true;
-			cachedEnpoint = new SummonerEndpoint(configWithCachingEnabled, ['euw1']);
+
+			let {per10, per600, allowBursts} = mergedConfig.limits;
+			cachedEnpoint = new SummonerEndpoint(configWithCachingEnabled, TestUtil.createRateLimiter(per10, per600, allowBursts));
 			// cachedEnpoint.setCache({isEnabled: true, defaults: conf.caching.defaults}, require('node-cache'));
 		});
 
