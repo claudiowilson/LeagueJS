@@ -34,9 +34,10 @@ class TestUtil {
 				summonerName: 'n$ame12!§3'
 			},
 			champions: {Akali: {id: 84}},
-			items: {FaeriCharm: {id: 1004}},
+			items: {IonianBoots: {id: 3158}},
 			masteries: {Fury: {id: 6111}},
-			runes: {Fury: {id: 6111}}
+			runes: {lesserMarkOfAttackSpeed: {id: 5003}},
+			summonerSpells: {Flash: {"name": "Flash","key": "SummonerFlash", "summonerLevel": 8, "id": 4}}
 		};
 	}
 }
