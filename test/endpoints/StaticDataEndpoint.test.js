@@ -8,7 +8,7 @@ describe('ChampionEndpoint Testsuite', function () {
 	const should = chai.should;
 	const expect = chai.expect;
 	chai.use(chaiAsPromised);
-	chai.use(should);
+	chai.should();
 
 	const TestUtil = require('../TestUtil');
 	let mergedConfig = TestUtil.getTestConfig();
@@ -26,7 +26,12 @@ describe('ChampionEndpoint Testsuite', function () {
 		endpoint = new StaticDataEndpoint(mergedConfig);
 	});
 
+	it('has its name added to default retryEndpoints', function () {
+		endpoint.config.limits.retryEndpoints.should.include(endpoint.name);
+	});
 	describe('gettingChampions', function () {
+		this.timeout(5000); // can take a long time to receive response (2 sec+)
+
 		it('gets the data for all champions', function () {
 			return endpoint.gettingChampions()
 				.should.eventually.have.property('data');

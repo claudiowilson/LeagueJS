@@ -1,4 +1,4 @@
-describe('ChampionMasteryEndpoint Testsuite', function () {
+describe('MatchEndpoint Testsuite', function () {
 	'use strict';
 
 	const MatchEndpoint = require('../../lib/endpoints/MatchEndpoint');
@@ -8,7 +8,7 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 	const should = chai.should;
 	const expect = chai.expect;
 	chai.use(chaiAsPromised);
-	chai.use(should);
+	chai.should();
 
 	const TestUtil = require('../TestUtil');
 	let mergedConfig = TestUtil.getTestConfig();
@@ -22,6 +22,9 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 		endpoint = new MatchEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
+	it('has its name added to default retryEndpoints', function () {
+		endpoint.config.limits.retryEndpoints.should.include(endpoint.name);
+	});
 	describe('gettingById', function () {
 		it('can request a specific match', function () {
 			return endpoint.gettingById(mock_summoner.gameId, mock_summoner.platformId)
@@ -33,7 +36,7 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 			return endpoint.gettingListByAccount(mock_summoner.accountId, {}, mock_summoner.platformId)
 				.should.eventually.have.property('matches')
 				.an('Array')
-				.with.length.of.at.least(388);
+				.with.length.of.at.least(100);
 		});
 	});
 	describe('gettingRecentListByAccount', function () {

@@ -8,7 +8,7 @@ describe('ChampionEndpoint Testsuite', function () {
 	const should = chai.should;
 	const expect = chai.expect;
 	chai.use(chaiAsPromised);
-	chai.use(should);
+	chai.should();
 
 	const TestUtil = require('../TestUtil');
 	let mergedConfig = TestUtil.getTestConfig();
@@ -21,6 +21,9 @@ describe('ChampionEndpoint Testsuite', function () {
 		endpoint = new SpectatorEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
+	it('has its name added to default retryEndpoints', function () {
+		endpoint.config.limits.retryEndpoints.should.include(endpoint.name);
+	});
 	describe('getttingFeaturedGames', function () {
 		it('can get 5 live games for given platformId', function () {
 			return endpoint.gettingFeaturedGames(mock_summoner.platformId)

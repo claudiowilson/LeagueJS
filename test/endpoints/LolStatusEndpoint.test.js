@@ -8,7 +8,7 @@ describe('ChampionEndpoint Testsuite', function () {
 	const should = chai.should;
 	const expect = chai.expect;
 	chai.use(chaiAsPromised);
-	chai.use(should);
+	chai.should();
 
 	const TestUtil = require('../TestUtil');
 	let mergedConfig = TestUtil.getTestConfig();
@@ -19,6 +19,9 @@ describe('ChampionEndpoint Testsuite', function () {
 		endpoint = new LolStatusEndpoint(mergedConfig);
 	});
 
+	it('has its name added to default retryEndpoints', function () {
+		endpoint.config.limits.retryEndpoints.should.include(endpoint.name);
+	});
 	it('gets the status of the shard specified by the platformId', function () {
 		return endpoint.gettingShardData('na1').should.eventually.have.property('slug').equal('na');
 	});

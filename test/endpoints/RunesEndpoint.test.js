@@ -8,7 +8,7 @@ describe('ChampionEndpoint Testsuite', function () {
 	const should = chai.should;
 	const expect = chai.expect;
 	chai.use(chaiAsPromised);
-	chai.use(should);
+	chai.should();
 
 	const TestUtil = require('../TestUtil');
 	let mergedConfig = TestUtil.getTestConfig();
@@ -22,6 +22,9 @@ describe('ChampionEndpoint Testsuite', function () {
 		endpoint = new RunesEndpoint(mergedConfig, TestUtil.createRateLimiter(per10, per600, allowBursts));
 	});
 
+	it('has its name added to default retryEndpoints', function () {
+		endpoint.config.limits.retryEndpoints.should.include(endpoint.name);
+	});
 	describe('gettingBySummoner', function () {
 		it('can request runes for a summoner', function () {
 			return endpoint.gettingBySummoner(mock_summoner.summonerId, mock_summoner.platformId)
