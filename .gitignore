@@ -13,4 +13,4 @@ node_modules
 .vs/
  LeagueJS.njsproj
 
-test/config.json
+test/testConfig.json

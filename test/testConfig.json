@@ -1,7 +1,7 @@
 {
-  "API_KEY": "RGAPI-a79c48bf-e936-4102-bf8c-4037dc7d36df",
+  "API_KEY": "RGAPI-742de7ba-aacd-4b1b-8c8a-367b5ee08705",
   "limits": {
-    "allowBursts": true,
+    "allowBursts": false,
     "per10": 10,
     "per600": 500
   }

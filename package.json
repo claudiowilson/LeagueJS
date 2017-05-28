@@ -1,13 +1,14 @@
 {
   "name": "leagueapi",
-  "version": "0.4.21",
+  "version": "1.0.0-beta.1",
   "description": "Wrapper for the League of Legends API",
   "keywords": [
-    "league",
-    "legends",
-    "wrapper",
+    "leagueoflegends",
     "api",
-    "client"
+    "wrapper",
+    "client",
+    "nodejs",
+    "riot-games-api-v3"
   ],
   "author": {
     "name": "Claudio Wilson",
@@ -24,24 +25,22 @@
   "dependencies": {
     "bluebird": "~3.5.0",
     "deepmerge": "~1.3.2",
-    "html": "latest",
     "node-cache": "~4.1.1",
-    "q": "~1.2.0",
     "request": "~2.81.0",
     "request-promise": "~4.2.1"
   },
   "devDependencies": {
-    "chai": "~3.5.0",
+    "chai": "^3.5.0",
     "chai-as-promised": "~6.0.0",
-    "gulp": "~3.4.0",
-    "gulp-clean": "~0.2.4",
-    "gulp-exec": "~1.0.4",
-    "gulp-istanbul": "~0.1.0",
-    "gulp-jshint": "~1.3.4",
-    "gulp-mocha": "~0.4.1",
-    "gulp-plato": "~0.1.1",
+    "gulp": "~3.9.1",
+    "gulp-clean": "~0.3.2",
+    "gulp-exec": "~2.1.3",
+    "gulp-istanbul": "~1.1.1",
+    "gulp-jshint": "~2.0.4",
+    "gulp-mocha": "~4.3.1",
+    "isparta": "~4.0.0",
     "mocha": "latest",
-    "should": "latest",
+    "plato": "~1.7.0",
     "sinon": "latest"
   },
   "maintainers": [
