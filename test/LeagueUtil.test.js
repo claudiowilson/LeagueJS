@@ -6,7 +6,7 @@ describe('LeagueUtil test suite', function () {
 	const chai = require("chai");
 	const should = chai.should;
 	const expect = chai.expect;
-	chai.use(should);
+	chai.should();
 
 	describe('getVersionForGameVersion()', function () {
 		it('gets the data dragon version based on the latest version with the same major.minor version', function () {
@@ -28,6 +28,15 @@ describe('LeagueUtil test suite', function () {
 				LeagueUtil.getVersionForGameVersion('5.1.8.123452', ['5.1.5', '5.1.3', '5.1.2'].reverse())
 					.should.equal(expected);
 			});
+		});
+	});
+
+	describe('getEndpointNames', function () {
+		it('returns an array with names', function () {
+			LeagueUtil.getEndpointNames().should.be.an('Array');
+		});
+		it('returns the names of the Endpoint files', function () {
+			LeagueUtil.getEndpointNames().should.include('Champion');
 		});
 	});
 
