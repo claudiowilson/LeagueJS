@@ -1,4 +1,4 @@
-describe('Endpoint Testsuite', function () {
+describe('ApiRequest Testsuite', function () {
 	'use strict';
 
 	const chai = require("chai");
@@ -6,7 +6,7 @@ describe('Endpoint Testsuite', function () {
 	const should = chai.should;
 	const expect = chai.expect;
 	chai.use(chaiAsPromised);
-	chai.use(should);
+	chai.should();
 
 	const ApiRequest = require('../lib/ApiRequest');
 
@@ -53,7 +53,9 @@ describe('Endpoint Testsuite', function () {
 		});
 		it('rejects with the full response', function () {
 			return ApiRequest.executing(mock_urlWith404, mock_validOptions)
-				.should.eventually.be.rejected.and.have.property('response');
+				.should.eventually.be.rejected
+				.and.have.property('response')
+				.with.property('headers');
 		});
 
 		it('rejects with the options set for the request', function () {
