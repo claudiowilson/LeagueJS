@@ -6,7 +6,7 @@ describe('League of Legends api wrapper test suite', function() {
 	const chai = require("chai");
 	const should = chai.should;
 	const expect = chai.expect;
-	chai.use(should);
+	chai.should();
 
 	it('should apply the config to the Class', function() {
 		let api = new LeagueJs({
@@ -24,5 +24,26 @@ describe('League of Legends api wrapper test suite', function() {
 	});
 	it('inherits all the Utility functionality from LeagueUtil', function () {
 		LeagueJs.should.have.property('getPlatformIds');
+	});
+
+	describe('Endpoints', function () {
+		it('are set as properties', function () {
+			let api = new LeagueJs({
+				API_KEY: 'test'
+			});
+			LeagueJs.getEndpointNames().forEach(endpointName => {
+				api.should.have.property(endpointName);
+			});
+		});
+
+		it('are stored within internal array', function () {
+			let api = new LeagueJs({
+				API_KEY: 'test'
+			});
+			const endpointNames = LeagueJs.getEndpointNames();
+			api._endpoints.forEach(endpoint => {
+				endpointNames.should.include(endpoint.name);
+			});
+		});
 	});
 });
