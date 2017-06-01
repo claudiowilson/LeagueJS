@@ -1,9 +1,9 @@
 const LeagueJs = require('../lib/LeagueJS.js');
 
-const api = new LeagueJs({
-	API_KEY: 'your-api-key or add to process.env.LEAGUE_API_KEY',
-	PLATFORM_ID: LeagueJs.getPlatformIdForRegion('euw')
-});
+const api =
+	new LeagueJs('your-api-key or add to process.env.LEAGUE_API_KEY', {
+		PLATFORM_ID: LeagueJs.getPlatformIdForRegion('euw')
+	});
 
 api.Summoner
 	.gettingByName('EldoranDev')

@@ -9,9 +9,7 @@ describe('League of Legends api wrapper test suite', function() {
 	chai.should();
 
 	it('should apply the config to the Class', function() {
-		let api = new LeagueJs({
-			API_KEY: 'test'
-		});
+		let api = new LeagueJs('test');
 
 		api.config.should.have.property('API_KEY');
 		api.config.API_KEY.should.be.equal('test');
@@ -20,7 +18,7 @@ describe('League of Legends api wrapper test suite', function() {
 	it('should not run without api key', function() {
 		expect(() => {
 			new LeagueJs();
-		}, 'Did not throw error with empty API_KEY.').to.throw('API_KEY');
+		}, 'Did not throw error with empty API_KEY.').to.throw('apiKey');
 	});
 	it('inherits all the Utility functionality from LeagueUtil', function () {
 		LeagueJs.should.have.property('getPlatformIds');
@@ -28,18 +26,14 @@ describe('League of Legends api wrapper test suite', function() {
 
 	describe('Endpoints', function () {
 		it('are set as properties', function () {
-			let api = new LeagueJs({
-				API_KEY: 'test'
-			});
+			let api = new LeagueJs('test');
 			LeagueJs.getEndpointNames().forEach(endpointName => {
 				api.should.have.property(endpointName);
 			});
 		});
 
 		it('are stored within internal array', function () {
-			let api = new LeagueJs({
-				API_KEY: 'test'
-			});
+			let api = new LeagueJs('test');
 			const endpointNames = LeagueJs.getEndpointNames();
 			api._endpoints.forEach(endpoint => {
 				endpointNames.should.include(endpoint.name);
@@ -49,8 +43,7 @@ describe('League of Legends api wrapper test suite', function() {
 	describe('setRateLimit', function () {
 		let api;
 		beforeEach(function () {
-			api = new LeagueJs({
-				API_KEY: 'test',
+			api = new LeagueJs('test', {
 				PLATFORM_ID: 'na1'
 			});
 			api.rateLimiter.per10.na1.should.have.property('_intervalMS').equal(10 * 1000);
