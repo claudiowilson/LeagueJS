@@ -46,4 +46,26 @@ describe('League of Legends api wrapper test suite', function() {
 			});
 		});
 	});
+	describe('setRateLimit', function () {
+		let api;
+		beforeEach(function () {
+			api = new LeagueJs({
+				API_KEY: 'test',
+				PLATFORM_ID: 'na1'
+			});
+			api.rateLimiter.per10.na1.should.have.property('_intervalMS').equal(10 * 1000);
+			api.rateLimiter.per10.na1.should.have.property('_allowBursts').equal(true);
+			api.getRateLimits().should.have.property('allowBursts').equal(true);
+		});
+		it('changes the rate-limits for leagueJS.rateLimiter', function () {
+			api.setRateLimit(100,1000,false);
+			api.getRateLimits().should.have.property('allowBursts').equal(false);
+		});
+		it('the changes propagate through all endpoints', function () {
+			api.Summoner.rateLimiter.per10.na1.should.have.property('_intervalMS').equal(10 * 1000);
+			api.Summoner.rateLimiter.per10.na1.should.have.property('_allowBursts').equal(true);
+			api.setRateLimit(100,1000,false);
+			api.Summoner.rateLimiter.per10.na1.should.have.property('_allowBursts').equal(false);
+		});
+	});
 });
