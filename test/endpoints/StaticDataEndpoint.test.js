@@ -66,13 +66,13 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('data')
 					.with.property(mock_champion.id);
 			});
-			it('champListData: can get a all champions with all additional properties', function () {
-				return endpoint.gettingChampions({champListData: 'all'}).then(({data}) => {
+			it('tags: can get a all champions with all additional properties', function () {
+				return endpoint.gettingChampions({tags: 'all'}).then(({data}) => {
 					data.Akali.should.have.property('image');
 				});
 			});
-			it('champListData: can get a all champions with multiple additional properties', function () {
-				return endpoint.gettingChampions({champListData: ['image', 'lore']}).then(({data}) => {
+			it('tags: can get a all champions with multiple additional properties', function () {
+				return endpoint.gettingChampions({tags: ['image', 'lore']}).then(({data}) => {
 					data.Akali.should.have.property('image');
 					data.Akali.should.have.property('lore');
 				});
@@ -103,12 +103,12 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('id')
 					.equal(mock_champion.id);
 			});
-			it('champListData: can get a champion with all additional properties', function () {
-				return endpoint.gettingChampionById(mock_champion.id, {champData: 'all'})
+			it('tags: can get a champion with all additional properties', function () {
+				return endpoint.gettingChampionById(mock_champion.id, {tags: 'all'})
 					.should.eventually.have.property('image');
 			});
-			it('champListData: can get a all champions with multiple additional properties', function () {
-				return endpoint.gettingChampionById(mock_champion.id, {champData: ['image', 'lore']}).then((champion) => {
+			it('tags: can get a all champions with multiple additional properties', function () {
+				return endpoint.gettingChampionById(mock_champion.id, {tags: ['image', 'lore']}).then((champion) => {
 					champion.should.have.property('image');
 					champion.should.have.property('lore');
 				});
@@ -122,32 +122,24 @@ describe('ChampionEndpoint Testsuite', function () {
 			return endpoint.gettingItems()
 				.should.eventually.have.property('data');
 		});
-		it('by default, gets only type, version, basic, data on the main results', function () {
+		it('by default, gets only type, version, data on the main results', function () {
 			return endpoint.gettingItems().then((results) => {
 				results.should.have.property('data');
-				results.should.have.property('basic');
 				results.should.have.property('version');
 				results.should.have.property('type')
 					.equal('item');
+
 			});
 		});
 
-		it('gets the basic data-structure example for items by default', function () {
-			return endpoint.gettingItems().then((results) => {
-				results.should.have.property('basic')
-					.with.property('stats')
-					.with.property('rPercentMagicPenetrationModPerLevel')
-					.equal(0);
-			});
-		});
-		it('by default, gets id, name, plaintext, and description on the items data', function () {
+		it('by default, id, name, description, plaintext, and group on the items data', function () {
 			return endpoint.gettingItems().then(({data}) => {
 				const testItem = data[mock_item.id];
 				testItem.should.have.property('id')
 					.equal(mock_item.id);
 				testItem.should.have.property('name');
-				testItem.should.have.property('plaintext');
 				testItem.should.have.property('description');
+				testItem.should.have.property('plaintext');
 
 				testItem.should.not.have.property('group'); // contradicting official docs
 				testItem.should.not.have.property('image');
@@ -160,13 +152,13 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('version')
 					.equal(version);
 			});
-			it('itemListData: can get all items with all additional properties', function () {
-				return endpoint.gettingItems({itemListData: 'all'}).then(({data}) => {
+			it('tags: can get all items with all additional properties', function () {
+				return endpoint.gettingItems({tags: 'all'}).then(({data}) => {
 					data[mock_item.id].should.have.property('image');
 				});
 			});
-			it('itemListData: can get all items with multiple additional properties', function () {
-				return endpoint.gettingItems({itemListData: ['image', 'gold']}).then(({data}) => {
+			it('tags: can get all items with multiple additional properties', function () {
+				return endpoint.gettingItems({tags: ['image', 'gold']}).then(({data}) => {
 					data[mock_item.id].should.have.property('image');
 					data[mock_item.id].should.have.property('gold');
 				});
@@ -202,13 +194,13 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('id')
 					.equal(mock_item.id);
 			});
-			it('itemData: can get all items with all additional properties', function () {
-				return endpoint.gettingItemById(mock_item.id, {itemData: 'all'}).then((item) => {
+			it('tags: can get all items with all additional properties', function () {
+				return endpoint.gettingItemById(mock_item.id, {tags: 'all'}).then((item) => {
 					item.should.have.property('image');
 				});
 			});
-			it('itemData: can get all items with multiple additional properties', function () {
-				return endpoint.gettingItemById(mock_item.id, {itemData: ['image', 'gold']}).then((item) => {
+			it('tags: can get all items with multiple additional properties', function () {
+				return endpoint.gettingItemById(mock_item.id, {tags: ['image', 'gold']}).then((item) => {
 					item.should.have.property('image');
 					item.should.have.property('gold');
 				});
@@ -269,19 +261,19 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('version')
 					.equal(version);
 			});
-			it('masteryListData: can get all additional properties', function () {
-				return endpoint.gettingMasteries({masteryListData: 'all'}).then(({data}) => {
+			it('tags: can get all additional properties', function () {
+				return endpoint.gettingMasteries({tags: 'all'}).then(({data}) => {
 					data[mock_mastery.id].should.have.property('image');
 				});
 			});
-			it('masteryListData: can get multiple additional properties', function () {
-				return endpoint.gettingMasteries({masteryListData: ['image', 'masteryTree']}).then(({data}) => {
+			it('tags: can get multiple additional properties', function () {
+				return endpoint.gettingMasteries({tags: ['image', 'masteryTree']}).then(({data}) => {
 					data[mock_mastery.id].should.have.property('image');
 					data[mock_mastery.id].should.have.property('masteryTree');
 				});
 			});
-			it('masteryListData: can get the mastery trees', function () {
-				return endpoint.gettingMasteries({masteryListData: 'tree'}).then((results) => {
+			it('tags: can get the mastery trees', function () {
+				return endpoint.gettingMasteries({tags: 'tree'}).then((results) => {
 					results.should.have.property('tree')
 						.with.property('Resolve')
 						.an('Array');
@@ -312,13 +304,13 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('id')
 					.equal(mock_mastery.id);
 			});
-			it('masteryData: can get all additional properties', function () {
-				return endpoint.gettingMasteryById(mock_mastery.id,{masteryData: 'all'}).then((mastery) => {
+			it('tags: can get all additional properties', function () {
+				return endpoint.gettingMasteryById(mock_mastery.id,{tags: 'all'}).then((mastery) => {
 					mastery.should.have.property('image');
 				});
 			});
-			it('masteryData: can get multiple additional properties', function () {
-				return endpoint.gettingMasteryById(mock_mastery.id, {masteryData: ['image', 'masteryTree']}).then((mastery) => {
+			it('tags: can get multiple additional properties', function () {
+				return endpoint.gettingMasteryById(mock_mastery.id, {tags: ['image', 'masteryTree']}).then((mastery) => {
 					mastery.should.have.property('image');
 					mastery.should.have.property('masteryTree');
 				});
@@ -372,23 +364,15 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('version')
 					.equal(version);
 			});
-			it('runeListData: can get all additional properties', function () {
-				return endpoint.gettingRunes({runeListData: 'all'}).then(({data}) => {
+			it('tags: can get all additional properties', function () {
+				return endpoint.gettingRunes({tags: 'all'}).then(({data}) => {
 					data[mock_rune.id].should.have.property('image');
 				});
 			});
-			it('runeListData: can get multiple additional properties', function () {
-				return endpoint.gettingRunes({runeListData: ['image', 'tags']}).then(({data}) => {
+			it('tags: can get multiple additional properties', function () {
+				return endpoint.gettingRunes({tags: ['image', 'tags']}).then(({data}) => {
 					data[mock_rune.id].should.have.property('image');
 					data[mock_rune.id].should.have.property('tags');
-				});
-			});
-			it('runeListData: can get the basic data-structure example', function () {
-				return endpoint.gettingRunes({runeListData: 'basic'}).then((results) => {
-					results.should.have.property('basic')
-						.with.property('stats')
-						.with.property('rPercentMagicPenetrationModPerLevel')
-						.equal(0);
 				});
 			});
 		});
@@ -417,13 +401,13 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('id')
 					.equal(mock_rune.id);
 			});
-			it('runeData: can get all additional properties', function () {
-				return endpoint.gettingRunesById(mock_rune.id,{runeData: 'all'}).then((mastery) => {
+			it('tags: can get all additional properties', function () {
+				return endpoint.gettingRunesById(mock_rune.id,{tags: 'all'}).then((mastery) => {
 					mastery.should.have.property('image');
 				});
 			});
-			it('runeData: can get multiple additional properties', function () {
-				return endpoint.gettingRunesById(mock_rune.id, {runeData: ['image', 'stats']}).then((mastery) => {
+			it('tags: can get multiple additional properties', function () {
+				return endpoint.gettingRunesById(mock_rune.id, {tags: ['image', 'stats']}).then((mastery) => {
 					mastery.should.have.property('image');
 					mastery.should.have.property('stats');
 				});
@@ -469,13 +453,13 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('data')
 					.with.property(mock_summonerSpell.id);
 			});
-			it('spellListData: can get a all champions with all additional properties', function () {
-				return endpoint.gettingSummonerSpells({spellListData: 'all'}).then(({data}) => {
+			it('tags: can get a all champions with all additional properties', function () {
+				return endpoint.gettingSummonerSpells({tags: 'all'}).then(({data}) => {
 					data[mock_summonerSpell.key].should.have.property('image');
 				});
 			});
-			it('spellListData: can get a all champions with multiple additional properties', function () {
-				return endpoint.gettingSummonerSpells({spellListData: ['image', 'cooldown']}).then(({data}) => {
+			it('tags: can get a all champions with multiple additional properties', function () {
+				return endpoint.gettingSummonerSpells({tags: ['image', 'cooldown']}).then(({data}) => {
 					data[mock_summonerSpell.key].should.have.property('image');
 					data[mock_summonerSpell.key].should.have.property('cooldown');
 				});
@@ -507,12 +491,12 @@ describe('ChampionEndpoint Testsuite', function () {
 					.should.eventually.have.property('id')
 					.equal(mock_summonerSpell.id);
 			});
-			it('spellData: can get a champion with all additional properties', function () {
-				return endpoint.gettingSummonerSpellsById(mock_summonerSpell.id, {spellData: 'all'})
+			it('tags: can get a champion with all additional properties', function () {
+				return endpoint.gettingSummonerSpellsById(mock_summonerSpell.id, {tags: 'all'})
 					.should.eventually.have.property('image');
 			});
-			it('spellData: can get a all champions with multiple additional properties', function () {
-				return endpoint.gettingSummonerSpellsById(mock_summonerSpell.id, {spellData: ['image', 'cooldown']}).then((champion) => {
+			it('tags: can get a all champions with multiple additional properties', function () {
+				return endpoint.gettingSummonerSpellsById(mock_summonerSpell.id, {tags: ['image', 'cooldown']}).then((champion) => {
 					champion.should.have.property('image');
 					champion.should.have.property('cooldown');
 				});
