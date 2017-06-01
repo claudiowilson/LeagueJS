@@ -8,6 +8,8 @@ describe('LeagueUtil test suite', function () {
 	const expect = chai.expect;
 	chai.should();
 
+	const TestUtil = require('./TestUtil');
+
 	describe('getVersionForGameVersion()', function () {
 		it('gets the data dragon version based on the latest version with the same major.minor version', function () {
 			const expected = ('5.1.3');
@@ -80,6 +82,23 @@ describe('LeagueUtil test suite', function () {
 		});
 		it('throws an error if no region is found', function () {
 			expect(()=>{LeagueUtil.getPlatformIdForRegion('wtf');}).to.throw(/No platformId.*wtf/);
+		});
+	});
+
+	describe('getChampionKeysFromName()', function () {
+		it('returns the expected key for every champion (depends on StaticData Endpoint!)', function () {
+			const config = TestUtil.getTestConfig();
+			const StaticEndpoint = require('../lib/endpoints/StaticDataEndpoint');
+			const endpoint = new StaticEndpoint(config);
+
+			return endpoint.gettingChampions(undefined, 'na1').then(({data}) => {
+				return Object.keys(data).map(champKey => {
+					const champ = data[champKey];
+					expect(LeagueUtil.getChampionKeyFromName(champ.name),
+						`"${champ.name}" was not correctly transformed into "${champ.key}"`
+					).to.equal(champ.key);
+				});
+			});
 		});
 	});
 
