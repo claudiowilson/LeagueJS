@@ -26,7 +26,7 @@ describe('ChampionEndpoint Testsuite', function () {
 
 	describe('gettingList', function () {
 		it('can request all champions', function () {
-			return endpoint.gettingList({}, mock_summoner.platformId).then(result => {
+			return endpoint.gettingList(mock_summoner.platformId).then(result => {
 				result.should.have.property('champions');
 				result.champions.should.be.an('Array')
 					.with.length.at.least(136);
@@ -34,7 +34,7 @@ describe('ChampionEndpoint Testsuite', function () {
 		});
 
 		it('can request the free champions', function () {
-			return endpoint.gettingList({freeToPlay: true}, mock_summoner.platformId)
+			return endpoint.gettingList(mock_summoner.platformId, {freeToPlay: true})
 				.should.eventually.have.property('champions')
 				.with.length.of.at.least(10);
 		});

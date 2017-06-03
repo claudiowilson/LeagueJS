@@ -33,7 +33,7 @@ describe('MatchEndpoint Testsuite', function () {
 	});
 	describe('gettingListByAccount', function () {
 		it('can request the matchlist for an account', function () {
-			return endpoint.gettingListByAccount(mock_summoner.accountId, {}, mock_summoner.platformId)
+			return endpoint.gettingListByAccount(mock_summoner.accountId, mock_summoner.platformId)
 				.should.eventually.have.property('matches')
 				.an('Array')
 				.with.length.of.at.least(100);

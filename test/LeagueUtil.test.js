@@ -85,13 +85,28 @@ describe('LeagueUtil test suite', function () {
 		});
 	});
 
+	describe('getPlatformIdFromPlatformIdOrRegion()', function () {
+		it('throws on invalid platformId values', function () {
+			expect(()=>{LeagueUtil.getPlatformIdFromPlatformIdOrRegion('en1');}).to.throw();
+		});
+		it('throws on invalid region values', function () {
+			expect(()=>{LeagueUtil.getPlatformIdFromPlatformIdOrRegion('EN');}).to.throw();
+		});
+		it('works case insensitive', function () {
+			LeagueUtil.getPlatformIdFromPlatformIdOrRegion('NA').should.equal('na1');
+			LeagueUtil.getPlatformIdFromPlatformIdOrRegion('na').should.equal('na1');
+			LeagueUtil.getPlatformIdFromPlatformIdOrRegion('NA1').should.equal('na1');
+			LeagueUtil.getPlatformIdFromPlatformIdOrRegion('na1').should.equal('na1');
+		});
+	});
+
 	describe('getChampionKeysFromName()', function () {
 		it('returns the expected key for every champion (depends on StaticData Endpoint!)', function () {
 			const config = TestUtil.getTestConfig();
 			const StaticEndpoint = require('../lib/endpoints/StaticDataEndpoint');
 			const endpoint = new StaticEndpoint(config);
 
-			return endpoint.gettingChampions(undefined, 'na1').then(({data}) => {
+			return endpoint.gettingChampions('na1').then(({data}) => {
 				return Object.keys(data).map(champKey => {
 					const champ = data[champKey];
 					expect(LeagueUtil.getChampionKeyFromName(champ.name),
