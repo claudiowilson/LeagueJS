@@ -128,6 +128,21 @@ describe('EndpointUtil Testsuite', function () {
 			EndpointUtil.extractPlatformIdAndOptions('euw').should.have.property('_platformId').equal(expected);
 		});
 
+		it('sets the platformId correctly if options is undefined', function () {
+			const expected = 'euw1';
+			EndpointUtil.extractPlatformIdAndOptions('EUW1', undefined).should.have.property('_platformId').equal(expected);
+		});
+
+		it('sets the options correctly if platformId is undefined', function () {
+			const expected = {anOption: 1};
+			EndpointUtil.extractPlatformIdAndOptions(undefined, expected).should.have.property('_options').equal(expected);
+		});
+
+		it('sets the options correctly if platformId is null', function () {
+			const expected = {anOption: 1};
+			EndpointUtil.extractPlatformIdAndOptions(null, expected).should.have.property('_options').equal(expected);
+		});
+
 		it('sets the options correctly if platformId is missing', function () {
 			const expected = {anOption: 1};
 			EndpointUtil.extractPlatformIdAndOptions(expected).should.have.property('_options').equal(expected);
