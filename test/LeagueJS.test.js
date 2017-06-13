@@ -22,7 +22,7 @@ describe('League of Legends api wrapper test suite', function() {
 		}, 'Did not throw error with empty API_KEY.').to.throw('apiKey');
 	});
 	it('inherits all the Utility functionality from LeagueUtil', function () { // TODO: rework
-		LeagueJs.should.have.property('getPlatformIds');
+		LeagueJs.util.should.have.property('EndpointUtil');
 	});
 
 	describe('Endpoints', function () {
