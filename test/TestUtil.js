@@ -1,11 +1,11 @@
 const deepmerge = require('deepmerge');
 const LeagueUtil = require('../lib/LeagueUtil');
+const Config = require('../lib/Config');
 
 class TestUtil {
 	static getTestConfig() {
 		const testConfig = require('./testConfig.json');
-		const defaultConfig = require('../lib/config');
-		const mergedConfig = deepmerge(defaultConfig, testConfig);
+		const mergedConfig = new Config(testConfig);
 
 		// NOTE: add your dev-api key to the config.json before running
 		if (typeof mergedConfig.API_KEY === 'undefined' || mergedConfig.API_KEY === '') {
