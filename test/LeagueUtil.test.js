@@ -41,22 +41,4 @@ describe('LeagueUtil test suite', function () {
 			LeagueUtil.getEndpointNames().should.include('Champion');
 		});
 	});
-
-	describe('getChampionKeysFromName()', function () {
-		it('returns the expected key for every champion (depends on StaticData Endpoint!)', function () {
-			const config = TestUtil.getTestConfig();
-			const StaticEndpoint = require('../lib/endpoints/StaticDataEndpoint');
-			const endpoint = new StaticEndpoint(config);
-
-			return endpoint.gettingChampions('na1').then(({data}) => {
-				return Object.keys(data).map(champKey => {
-					const champ = data[champKey];
-					expect(LeagueUtil.getChampionKeyFromName(champ.name),
-						`"${champ.name}" was not correctly transformed into "${champ.key}"`
-					).to.equal(champ.key);
-				});
-			});
-		});
-	});
-
 });
