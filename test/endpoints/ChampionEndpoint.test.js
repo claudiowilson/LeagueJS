@@ -5,7 +5,7 @@ describe('ChampionEndpoint Testsuite', function () {
 
 	const chai = require("chai");
 	const chaiAsPromised = require("chai-as-promised");
-	const expect = chai.expect;
+	// const expect = chai.expect;
 	chai.use(chaiAsPromised);
 	chai.should();
 
@@ -47,9 +47,8 @@ describe('ChampionEndpoint Testsuite', function () {
 		});
 
 		describe('wrong parameters', function () {
-			it('throws TypeError if championId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingById('somestring', mock_summoner.platformId);})
-					.to.throw(TypeError);
+			it('rejects with TypeError if championId is invalid (not numerical)', function () {
+				return endpoint.gettingById('somestring', mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
 		});
 	});

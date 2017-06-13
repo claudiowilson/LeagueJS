@@ -31,8 +31,8 @@ describe('SummonerEndpoint Testsuite', function () {
 				.should.eventually.have.property('accountId');
 		});
 
-		it('throws if name contains invalid characters ', function () {
-			expect(() => {endpoint.gettingByName(mock_invalidName, mock_summoner.platformId);}).to.throw('$ | !§');
+		it('rejects if name contains invalid characters ', function () {
+			return endpoint.gettingByName(mock_invalidName, mock_summoner.platformId).should.eventually.be.rejectedWith('$ | !§');
 		});
 	});
 

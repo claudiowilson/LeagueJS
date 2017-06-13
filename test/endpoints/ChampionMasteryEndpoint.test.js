@@ -5,7 +5,7 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 
 	const chai = require("chai");
 	const chaiAsPromised = require("chai-as-promised");
-	const expect = chai.expect;
+	// const expect = chai.expect;
 	chai.use(chaiAsPromised);
 	chai.should();
 
@@ -33,14 +33,14 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 		});
 
 		describe('wrong parameters', function () {
-			it('throws TypeError if summonerId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummoner('somestring', mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is invalid (not numerical)', function () {
+				return endpoint.gettingBySummoner('somestring', mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if summonerId is not given', function () {
-				expect(() => {endpoint.gettingBySummoner(mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is not given', function () {
+				return endpoint.gettingBySummoner(mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if summonerId is null', function () {
-				expect(() => {endpoint.gettingBySummoner(null, mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is null', function () {
+				return endpoint.gettingBySummoner(null, mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
 		});
 	});
@@ -55,23 +55,23 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 		});
 
 		describe('wrong parameters', function () {
-			it('throws TypeError if summonerId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion('somestring', TestUtil.mocks.champions.Akali.id, mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is invalid (not numerical)', function () {
+				return endpoint.gettingBySummonerForChampion('somestring', TestUtil.mocks.champions.Akali.id, mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if summonerId is not given', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(TestUtil.mocks.champions.Akali.id, mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is not given', function () {
+				return endpoint.gettingBySummonerForChampion(TestUtil.mocks.champions.Akali.id, mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if summonerId is null', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(null, TestUtil.mocks.champions.Akali.id, mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is null', function () {
+				return endpoint.gettingBySummonerForChampion(null, TestUtil.mocks.champions.Akali.id, mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if championId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, 'somestring', mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if championId is invalid (not numerical)', function () {
+				return endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, 'somestring', mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if championId is not given', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if championId is not given', function () {
+				return endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if championId is null', function () {
-				expect(() => {endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, null, mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if championId is null', function () {
+				return endpoint.gettingBySummonerForChampion(mock_summoner.summonerId, null, mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
 		});
 	});
@@ -81,14 +81,14 @@ describe('ChampionMasteryEndpoint Testsuite', function () {
 				.should.eventually.be.a('number');
 		});
 		describe('wrong parameters', function () {
-			it('throws TypeError if summonerId is invalid (not numerical)', function () {
-				expect(() => {endpoint.gettingBySummoner('somestring', mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is invalid (not numerical)', function () {
+				return endpoint.gettingBySummoner('somestring', mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if summonerId is not given', function () {
-				expect(() => {endpoint.gettingBySummoner(mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is not given', function () {
+				return endpoint.gettingBySummoner(mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
-			it('throws TypeError if summonerId is null', function () {
-				expect(() => {endpoint.gettingBySummoner(null, mock_summoner.platformId);}).to.throw(TypeError);
+			it('gets rejected with TypeError if summonerId is null', function () {
+				return endpoint.gettingBySummoner(null, mock_summoner.platformId).should.eventually.be.rejectedWith(TypeError);
 			});
 		});
 	});

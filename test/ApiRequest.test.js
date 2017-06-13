@@ -1,10 +1,12 @@
 describe('ApiRequest Testsuite', function () {
 	'use strict';
 
+	const ParameterError = require('../lib/errors/ParameterError');
+
 	const chai = require("chai");
 	const chaiAsPromised = require("chai-as-promised");
 	const should = chai.should;
-	const expect = chai.expect;
+	// const expect = chai.expect;
 	chai.use(chaiAsPromised);
 	chai.should();
 
@@ -19,12 +21,10 @@ describe('ApiRequest Testsuite', function () {
 
 
 	it('needs an url to execute', function () {
-		expect(() => {ApiRequest.executing(null, mock_validOptions);})
-			.to.throw(require('../lib/errors/ParameterError'));
+		return ApiRequest.executing(null, mock_validOptions).should.eventually.be.rejectedWith(ParameterError);
 	});
 	it('needs a token (api key) to execute', function () {
-		expect(() => {ApiRequest.executing(mock_urlWithJSONResponse);})
-			.to.throw(require('../lib/errors/ParameterError'));
+		return ApiRequest.executing(mock_urlWithJSONResponse).should.eventually.be.rejectedWith(ParameterError);
 	});
 
 	describe('valid requests', function () {
