@@ -2,6 +2,7 @@ describe('League of Legends api wrapper test suite', function() {
 	'use strict';
 
 	const LeagueJs = require('../lib/LeagueJS');
+	const EndpointUtil = require('../lib/util/EndpointUtil');
 
 	const chai = require("chai");
 	const should = chai.should;
@@ -27,14 +28,14 @@ describe('League of Legends api wrapper test suite', function() {
 	describe('Endpoints', function () {
 		it('are set as properties', function () {
 			let api = new LeagueJs('test');
-			LeagueJs.getEndpointNames().forEach(endpointName => {
+			EndpointUtil.getEndpointNames().forEach(endpointName => {
 				api.should.have.property(endpointName);
 			});
 		});
 
 		it('are stored within internal array', function () {
 			let api = new LeagueJs('test');
-			const endpointNames = LeagueJs.getEndpointNames();
+			const endpointNames = EndpointUtil.getEndpointNames();
 			api._endpoints.forEach(endpoint => {
 				endpointNames.should.include(endpoint.name);
 			});

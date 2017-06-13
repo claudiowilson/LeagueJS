@@ -1,7 +1,7 @@
 describe('EndpointUtil Testsuite', function () {
 	'use strict';
 
-	const EndpointUtil = require('../../lib/EndpointUtil');
+	const EndpointUtil = require('../../lib/util/EndpointUtil');
 	const ParameterError = require('../../lib/errors/ParameterError');
 
 	const chai = require("chai");
