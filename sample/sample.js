@@ -2,7 +2,7 @@ const LeagueJs = require('../lib/LeagueJS.js');
 
 const api =
 	new LeagueJs('your-api-key or add to process.env.LEAGUE_API_KEY', {
-		PLATFORM_ID: LeagueJs.getPlatformIdForRegion('euw')
+		PLATFORM_ID: LeagueJs.util.RegionAndPlatformUtil.getPlatformIdForRegion('euw')
 	});
 
 api.Summoner
