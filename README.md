@@ -3,7 +3,7 @@ LeagueJS
 
 [![Join the chat at https://gitter.im/League-JS/Lobby](https://badges.gitter.im/League-JS/Lobby.svg)](https://gitter.im/League-JS/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A Javascript Wrapper for the League of Legends API
+A Javascript Wrapper for the League of Legends API.
 
 ## How To Use
 // TODO: rework this doc-part
@@ -13,24 +13,58 @@ Use npm to install it from the npm registry by running `npm install leagueapi`
 Run `npm install` followed by `node server.js`
 ```
 
-### Config
+### Quickstart
 
-TODO: Document config params that can be overwriten
+```
+// setting default platformId to be used if you don't specify it on the endpoint method
+process.env.LEAGUE_API_PLATFORM_ID = 'euw1'
+
+const LeagueJs = require('../lib/LeagueJS.js');
+const api = new LeagueJs(process.env.LEAGUE_API_KEY);
+
+api.Summoner
+	.gettingByName('EldoranDev')
+	.then(data => {
+		'use strict';
+		console.log(data);
+	})
+	.catch(err => {
+		'use strict';
+		console.log(err);
+	});
+
+api.Summoner
+	.gettingByAccount(22177292, 'euw')
+	.then(data => {
+		'use strict';
+		console.log(data);
+	})
+	.catch(err => {
+		'use strict';
+		console.log(err);
+	});
+```
 
 ### Environment Variables
-Some Options can be read from the Environment
 
-*LEAGUE_API_KEY* The value of this environmental variable will be used as authorization token  
 *LEAGUE_API_PLATFORM_ID* The value of this environmental variable will be used as default platformId. If not provided, 'na1' is used.
 
 Alternatively they can be provided to the League constructor within the options parameter
 ```
-const leagueApi = new League({API_KEY: <Your Api key>, PLATFORM_ID: <default api region>})
+const leagueApi = new League(<Your Api key>, {PLATFORM_ID: <default api region>})
+```
+
+We recommend you read the API key from your environment variables too and pass that to the LeagueJS constructor
+
+```
+const leagueApi = new League(process.env.LEAGUE_API_KEY)
 ```
 
 ### Caching
 
-By default, caching is disabled. If enabled, the default caching is using node-cache with the request-urls as caching-key
+By default, caching is disabled.
+
+If enabled, the default caching is using node-cache with the request-urls as caching-key
 The easiest way to setup caching is to pass a minimum set of caching options to LeagueJS on instantiation
 
 ```
@@ -44,7 +78,22 @@ const leagueJS = new LeagueJS({
 })
 ```
 
-Full set of caching defaults:
+You can setup caching globally or on an Endpoint basis
+```
+// replacing Cache-options within Summoner endpoint (overwrites global options for that Endpoint)
+leagueJS.Summoner.setCache({ stdTTL: 120})
+
+leagueJS.Summoner.enableCaching();
+leagueJS.Summoner.disableCaching();
+
+// Set caching options for all endpoints (overwrites previously set options)
+leagueJS.setCache({ stdTTL: 120}, MyCache)
+leagueJS.setCache({ stdTTL: 120})
+leagueJS.enableCaching();
+leagueJS.disableCaching();
+```
+
+Options not explicitly set use following defaults (found in ```/lib/Config.js```)
 ```
 {
 	/** the standard ttl as number in seconds for every generated cache element.
@@ -77,7 +126,7 @@ Full set of caching defaults:
 
 ```
 
-You have following options to manipulate which Caching implementation is used or to change the settings for it:
+You can set your own Caching implementation if you like
 **NOTE: make sure the public interface of your caching implementation is the same as node-cache uses to prevent incompatibilities.**
 
 ```
@@ -93,28 +142,15 @@ const leagueJS = new LeagueJS({
 	...
 	})
 
-// replacing Cache within Summoner endpoint
-leagueJS.Summoner.setCache({ stdTTL: 120}, MyCache)
 
-// replacing Cache-options within Summoner endpoint
-leagueJS.Summoner.setCache({ stdTTL: 120})
-
-leagueJS.Summoner.enableCaching();
-leagueJS.Summoner.disableCaching();
-
-// Same options for all endpoints
+// replacing Cache globally (overwrites previously set options on endpoints)
 leagueJS.setCache({ stdTTL: 120}, MyCache)
-leagueJS.setCache({ stdTTL: 120})
-leagueJS.enableCaching();
-leagueJS.disableCaching();
+
+// replacing Cache within specific endpoint (overwrites global options for that Endpoint)
+leagueJS.Summoner.setCache({ stdTTL: 120}, MyCache)
 ```
 
-### Here's the list of methods and their parameters:
-`[param]` means you can pass null if you don't want to specify this parameter
-// TODO: rework this doc-part
-
-### Samples
-There are some Sample implementations in samples folder.
+# Developer
 
 ## LeagueJS Gulp Commands
 // TODO: propably rework this doc-part
@@ -126,6 +162,8 @@ we are able to create a simple, efficient and more intuitive build process.
 - `npm install -g gulp`
 
 #### Available gulp commands and their descriptions:
+
+- [] TODO: check if all are working and update description if neccessary
 
 Run JSLint on all js files: 
 
@@ -154,58 +192,3 @@ Removes both coverage and report directories created by istanbul and plato
 Sets up a development environment that will watch for code changes then run JSLint and BDD tests upon saving:
 
 - `gulp dev`
-
-## Tests
-
-LEAGUE_API_KEY and LEAGUE_API_PLATFORM_ID will be read from config.json within ```/test/```.
-This is added to .gitignore to prevent publishing your API-key.
-Before running tests you will need to add your developer Key here.
-Structure of the config.json will mirror ```/lib/config.js``` if you want to change other values used for testing
-like rate-limits
-
-```
-// /test/config.json
-{
-	"API_KEY": <your api key>,
-	  "limits": {
-	  // for running the API-tests on CI a lot of this is recommended to be set to false, so that the RateLimiter will
-	  // space out the requests to prevent hitting the rate limit.
-	  // When running single test-suites during development it should be true to speed up execution significantly
-        "allowBursts": true,
-        "per10": 10,
-        "per600": 500
-      }
-}
-```
-
-
-For testing, mocha + chai with needed plugins is used.
-Chai provides a natural, readable interface for test-creation and using the appropriate Plugins keeps tests simple,
-readable and comprehensible.
-
-Some important notes (mostly common unit-testing best practices):
-
-* design your tests so that they also can act as documentation. This means the test-description should explain what is tested,
-and all tests should describe the functionality tested.
-
-* keep tests short and simple and group them into sub-suites where advantageous for a better understanding and discoverability.
-
-* rather write two very short and atomic tests instead of testing multiple things within the same test.
-
-* if a test requires setup, do this setup scoped to this test / sub-suite with the before()/beforeEach() functions mocha provides.
-Don't forget to clean up your setup afterwards with after()/afterEach() if you need to reset it between tests/suites
-
-* always define imports, constants, variables etc. within the respective Test-suite to keep them scoped to that very test-suite
-and to prevent leaking mocked dependencies and variables into other test-suites.
-Same Principle is true for different sub-suites / test-case isolation within the test-suites.
-
-* define mock-objects that are reused on top of the Test-suite and with a unambiguos, speaking name that describes it's purpose.
-
-* to be able to set mocha options within the tests (e.g. timeout() ) easily,
-it is important that the test-cases are defined by using the function syntax, not the ```()=>{}``` syntax.
-
-
-#### possibly deprecated packages
-
-* q
-* html
