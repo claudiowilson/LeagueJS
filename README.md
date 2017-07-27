@@ -1,6 +1,8 @@
 LeagueJS
 ========
 
+### This Version is currently no longer maintained. v1.0.0 Rework for Riot API v3 can be found [here on npm](https://www.npmjs.com/package/leaguejs)
+
 [![Join the chat at https://gitter.im/League-JS/Lobby](https://badges.gitter.im/League-JS/Lobby.svg)](https://gitter.im/League-JS/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A Javascript Wrapper for the League of Legends API
