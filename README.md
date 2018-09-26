@@ -38,7 +38,7 @@ LolApi.Summoner.getByName('YOLO Swag 5ever')
 Run `npm install` followed by `node server.js`
 
 ### Here's the list of methods and their parameters:
-`[param]` means you can pass null if you don't want to specify this parameter
+`[param]` means you can pass null values if you don't want to specify the paramater
 
 
 ```Javascript
@@ -215,6 +215,6 @@ Removes both coverage and report directories created by istanbul and plato
 
 - `gulp clean-reports`
 	
-Sets up a development environment that will watch for code changes then run JSLint and BDD tests upon saving:
+Sets up a development environment that will listen for code changes, then run JSLint and BDD tests upon saving:
 
 - `gulp dev`
